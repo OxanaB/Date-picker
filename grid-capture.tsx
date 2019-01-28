@@ -8,11 +8,11 @@ export class GridCapture extends React.Component {
             <tr>
             {
                 days.map((day) => {
-                    return <td key={day.toString()}> {day}
-                    </td>;
+                    return <th key={day.toString()}> {day}
+                    </th>;
                 })
             }
             </tr>
         </thead>
     }
-}
+} 
