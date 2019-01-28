@@ -6,15 +6,13 @@ export interface PreviousMonthButtonProps {
 
 export interface PreviousMonthConcern {
     about: 'show-previous-month';
-    isCurrentMonth: boolean;
-    toShowPreviousMonth: boolean,
 }
 
 export class PreviousMonthButton extends React.Component<PreviousMonthButtonProps> {
     render() {
         return <a className="previous-month" onClick={e => {
             e.preventDefault;
-            this.props.when({ about: 'show-previous-month', isCurrentMonth: false, toShowPreviousMonth: true })
+            this.props.when({ about: 'show-previous-month' })
         }}></a>
     }
 }

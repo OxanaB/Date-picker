@@ -1,21 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { DatePickerProps, DatePicker } from './date-picker';
+import { GridCapture } from './grid-capture';
 
 
 let oldProps: DatePickerProps = {
     date: new Date(),
-    isCurrentMonth: true,
-    toShowNextMonth: false,
-    toShowPreviousMonth: false,
     when: (concern) => {
         switch (concern.about) {
             case 'show-previous-month': {
                 const newProps: DatePickerProps = {
                     ...oldProps,
-                    date: new Date(oldProps.date.getFullYear(), oldProps.date.getMonth() - 1),
-                    isCurrentMonth: concern.isCurrentMonth,
-                    toShowPreviousMonth: concern.toShowPreviousMonth                    
+                    date: new Date(oldProps.date.getFullYear(), oldProps.date.getMonth() - 1),               
                 };
                 rerender(newProps);
                 break;
@@ -24,8 +20,6 @@ let oldProps: DatePickerProps = {
                 const newProps: DatePickerProps = {
                     ...oldProps,
                     date: new Date(oldProps.date.getFullYear(), oldProps.date.getMonth() + 1),
-                    isCurrentMonth: concern.isCurrentMonth,
-                    toShowNextMonth: concern.toShowNextMonth
                 };
                 rerender(newProps);
                 break;

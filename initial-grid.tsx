@@ -2,12 +2,11 @@ import * as React from 'react';
 import { getGridsStartAndFinishPoints, makeGrid } from './grid-maker';
 
 
-export interface InitialGridProps {
+export interface GridProps {
     date: Date;
-     
 }
 
-export class InitialGrid extends React.Component<InitialGridProps> {
+export class Grid extends React.Component<GridProps> {
     
     render() {
         const { date } = this.props;
