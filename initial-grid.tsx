@@ -14,8 +14,8 @@ export class InitialGrid extends React.Component<InitialGridProps> {
         const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(date);
         const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid);
         
-        return <table>
-            <tbody>
+        return <tbody>
+            
                 {
                     gridCurrentMonth.map((week, weekIndex) => {
                         return <tr key={weekIndex}>{
@@ -26,8 +26,8 @@ export class InitialGrid extends React.Component<InitialGridProps> {
                     })
                 }
 
-            </tbody>
-        </table>
+            
+        </tbody>
     }
 }
 

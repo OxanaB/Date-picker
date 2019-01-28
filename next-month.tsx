@@ -10,12 +10,12 @@ export class NextMonth extends React.Component<NextMonthProps> {
     render() {
         const currentMonth = this.props.date.getMonth();
         const currentYear = this.props.date.getFullYear();
-        const nextMonth = new Date(currentYear, currentMonth + 1);
+        const nextMonth = new Date(currentYear, currentMonth);
         const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(nextMonth);
         
         const gridNextMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid);
-        return <table>
-        <tbody>
+        return <tbody>
+        
             {
                 gridNextMonth.map((week, weekIndex) => {
                     return <tr key={weekIndex}>{
@@ -27,6 +27,5 @@ export class NextMonth extends React.Component<NextMonthProps> {
             }
 
         </tbody>
-    </table>
     }
 }

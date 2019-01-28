@@ -12,6 +12,12 @@
   display: flex;
   justify-content: space-between;
 }
+.month-viewer {
+  font-style: italic;
+  background-color: lightgray;
+  padding: 10px;
+  align-self: center;
+}
 .previous-month {
   display: block;
   width: 24px;

@@ -10,12 +10,11 @@ export class PreviousMonth extends React.Component<PreviousMonthProps> {
     render() {
         const currentMonth = this.props.date.getMonth();
         const currentYear = this.props.date.getFullYear();
-        const previousMonth = new Date(currentYear, currentMonth - 1);
+        const previousMonth = new Date(currentYear, currentMonth);
         const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(previousMonth);
         
         const gridPreviousMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid);
-        return <table>
-        <tbody>
+        return <tbody>
             {
                 gridPreviousMonth.map((week, weekIndex) => {
                     return <tr key={weekIndex}>{
@@ -27,6 +26,5 @@ export class PreviousMonth extends React.Component<PreviousMonthProps> {
             }
 
         </tbody>
-    </table>
     }
 }

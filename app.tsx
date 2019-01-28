@@ -13,6 +13,7 @@ let oldProps: DatePickerProps = {
             case 'show-previous-month': {
                 const newProps: DatePickerProps = {
                     ...oldProps,
+                    date: new Date(oldProps.date.getFullYear(), oldProps.date.getMonth() - 1),
                     isCurrentMonth: concern.isCurrentMonth,
                     toShowPreviousMonth: concern.toShowPreviousMonth                    
                 };
@@ -22,6 +23,7 @@ let oldProps: DatePickerProps = {
             case 'show-next-month': {
                 const newProps: DatePickerProps = {
                     ...oldProps,
+                    date: new Date(oldProps.date.getFullYear(), oldProps.date.getMonth() + 1),
                     isCurrentMonth: concern.isCurrentMonth,
                     toShowNextMonth: concern.toShowNextMonth
                 };
