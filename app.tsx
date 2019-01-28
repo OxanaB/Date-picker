@@ -6,12 +6,24 @@ import { DatePickerProps, DatePicker } from './date-picker';
 let oldProps: DatePickerProps = {
     date: new Date(),
     isCurrentMonth: true,
+    toShowNextMonth: false,
+    toShowPreviousMonth: false,
     when: (concern) => {
         switch (concern.about) {
             case 'show-previous-month': {
                 const newProps: DatePickerProps = {
                     ...oldProps,
-                    isCurrentMonth: concern.isCurrentMonth
+                    isCurrentMonth: concern.isCurrentMonth,
+                    toShowPreviousMonth: concern.toShowPreviousMonth                    
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'show-next-month': {
+                const newProps: DatePickerProps = {
+                    ...oldProps,
+                    isCurrentMonth: concern.isCurrentMonth,
+                    toShowNextMonth: concern.toShowNextMonth
                 };
                 rerender(newProps);
                 break;

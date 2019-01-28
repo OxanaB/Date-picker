@@ -4,9 +4,11 @@ import { getGridsStartAndFinishPoints, makeGrid } from './grid-maker';
 
 export interface InitialGridProps {
     date: Date;
+     
 }
 
 export class InitialGrid extends React.Component<InitialGridProps> {
+    
     render() {
         const { date } = this.props;
         const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(date);

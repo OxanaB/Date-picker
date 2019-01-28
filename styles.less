@@ -3,24 +3,32 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-.previous-month {
+}
+.date-picker {
+    max-width: fit-content;
+    padding: 10px;
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+.button() {
     display: block;
     width: 24px;
     height: 24px;
-    margin: 5px;
-    border: 0px;
-    background-color: white;
+    margin: 10px;
+    border: 1px solid grey;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.previous-month {
+    .button();
     background-image: url(/arrow_left.png);
 }
 
 .next-month {
-    display: block;
-    width: 24px;
-    height: 24px;
-    margin: 5px;
-    border: 0px;
-    background-color: white;
+    .button();
     background-image: url(/arrow_right.png);
 }

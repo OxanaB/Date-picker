@@ -4,12 +4,33 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.date-picker {
+  max-width: fit-content;
+  padding: 10px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
 .previous-month {
   display: block;
   width: 24px;
   height: 24px;
-  margin: 5px;
-  border: 0px;
-  background-color: white;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+');
+  margin: 10px;
+  border: 1px solid grey;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url(/arrow_left.png);
+}
+.next-month {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+  border: 1px solid grey;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url(/arrow_right.png);
 }
