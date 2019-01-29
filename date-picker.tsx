@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid } from './grid';
+import { Grid, PickedDateConcern } from './grid';
 import { PreviousMonthButton, PreviousMonthConcern } from './previous-month-button';
 import { NextMonthConcern, NextMonthButton } from './next-month-button';
 import { MonthViewer } from './month-viewer';
@@ -7,7 +7,7 @@ import { GridCapture } from './grid-capture';
 
 export interface DatePickerProps {
     date: Date;
-    when: (concern: PreviousMonthConcern | NextMonthConcern) => void;
+    when: (concern: PreviousMonthConcern | NextMonthConcern | PickedDateConcern) => void;
 }
 
 export class DatePicker extends React.Component<DatePickerProps> {
@@ -22,7 +22,7 @@ export class DatePicker extends React.Component<DatePickerProps> {
             </div>
             <table className="grid">
                 <GridCapture />
-                <Grid date={date} />
+                <Grid date={date} when={concern => this.props.when(concern)}/>
             </table>
         </div>
     }
