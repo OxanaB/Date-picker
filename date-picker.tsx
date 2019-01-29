@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Grid } from './initial-grid';
+import { Grid } from './grid';
 import { PreviousMonthButton, PreviousMonthConcern } from './previous-month-button';
 import { NextMonthConcern, NextMonthButton } from './next-month-button';
 import { MonthViewer } from './month-viewer';
