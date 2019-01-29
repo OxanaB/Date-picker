@@ -17,9 +17,10 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
             return month;
         }
         const month = monthToString(monthNumber);
+        const year = this.props.date.getFullYear();
         return <>
             <div className="month-viewer">
-                {month}
+                {month + ", " + year}
             </div>
         </>
     }

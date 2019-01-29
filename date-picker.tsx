@@ -16,13 +16,15 @@ export class DatePicker extends React.Component<DatePickerProps> {
         const { date } = this.props;
         return <div className="date-picker">
             <div className="nav">
-                <PreviousMonthButton when={this.props.when} />
+                <PreviousMonthButton when={concern => this.props.when(concern)} />
                 <MonthViewer date={date} />
-                <NextMonthButton when={this.props.when} />
+                <NextMonthButton when={concern => this.props.when(concern)} />
             </div>
             <table className="grid">
                 <GridCapture />
-                <Grid date={date} when={concern => this.props.when(concern)}/>
+                <Grid date={date} when={concern => {
+                    this.props.when(concern);
+                }} />
             </table>
         </div>
     }

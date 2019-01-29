@@ -23,7 +23,7 @@ export class Grid extends React.Component<GridProps> {
             {
                 gridCurrentMonth.map((week, weekIndex) => {
                     return <tr key={weekIndex}>{
-                        week.map((date) => {
+                        week.map(date => {
                             return <td key={date.toDateString()}>
                                 <a href="" onClick={e => {
                                     e.preventDefault();
