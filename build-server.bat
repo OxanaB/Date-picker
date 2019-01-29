@@ -1,0 +1,1 @@
+node ./node_modules/typescript/bin/tsc --module commonjs --outDir ./node_modules/date-picker

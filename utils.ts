@@ -1,3 +1,4 @@
+import { testing } from "./testing";
 
 export function getRandomElement<T>(array: T[]): T {
     const n = Math.random() * array.length;
