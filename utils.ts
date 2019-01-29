@@ -91,3 +91,7 @@ export function increment<T>(step: number, origin: number, times: number, act:(a
         result.push(value);
     } return result;
 }
+
+export function broke(never:never): never {
+    return never;
+}
