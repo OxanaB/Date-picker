@@ -9,13 +9,24 @@ interface AppProps {
 
 let oldProps: AppProps = {
     datePicker: {
+        pickedDate: new Date(),
         calendar: {
             date: new Date(),
             when: concern => {
                 switch(concern.about) {
                     case 'date-is-picked': {
-                        const { pickedDate } = concern;
-                        console.log(pickedDate);
+                        const newProps: AppProps = {
+                            ...oldProps,
+                            datePicker: {
+                                ...oldProps.datePicker,
+                                pickedDate: concern.pickedDate,
+                                inputForm: {
+                                    ...oldProps.datePicker.inputForm,
+                                    pickedDate: concern.pickedDate
+                                }
+                            }
+                        };
+                        rerender(newProps);
                         break;
                     }
                     case 'show-next-month': {
@@ -53,6 +64,7 @@ let oldProps: AppProps = {
             },
         },
         inputForm: {
+            pickedDate: new Date(),
             when: concern => {
                 switch(concern.about) {
                     case 'show-calendar': {

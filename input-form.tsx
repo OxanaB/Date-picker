@@ -1,21 +1,37 @@
 import * as React from 'react';
 
 export interface InputFormProps {
-    when: (concern: ShowCalendarConcern) => void;
+    pickedDate: Date;
+    when: (concern: InputFormConcerns) => void;
 }
+
+type InputFormConcerns = ShowCalendarConcern;
 
 export interface ShowCalendarConcern {
     about: 'show-calendar';
     isCalendarToShow: boolean;
 }
 
-export class InputForm extends React.Component<InputFormProps> {
+interface State {
+    text: string;
+}
+export class InputForm extends React.Component<InputFormProps, State> {
+    state = {
+        text: this.props.pickedDate.toLocaleString()
+    }
     render() {
+        const { text } = this.state;
         return <form>
-            <input type="text" onFocus={(e) => {
-                e.preventDefault;
-                this.props.when({ about: 'show-calendar', isCalendarToShow: true })
-            }} />
+            <legend>Choose date: </legend>
+            <input type="text"
+                value={text}
+                onFocus={() => {
+                    this.props.when({ about: 'show-calendar', isCalendarToShow: true })
+                }}
+                onChange={e => {
+                    this.setState({ text: e.currentTarget.value });
+                }}
+            />
         </form>
     }
 }
