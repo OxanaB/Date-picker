@@ -9,81 +9,61 @@ interface AppProps {
 
 let oldProps: AppProps = {
     datePicker: {
-        pickedDate: new Date(),
-        calendar: {
-            date: new Date(),
-            when: concern => {
-                switch(concern.about) {
-                    case 'date-is-picked': {
-                        const newProps: AppProps = {
-                            ...oldProps,
-                            datePicker: {
-                                ...oldProps.datePicker,
-                                pickedDate: concern.pickedDate,
-                                inputForm: {
-                                    ...oldProps.datePicker.inputForm,
-                                    pickedDate: concern.pickedDate
-                                }
-                            }
-                        };
-                        rerender(newProps);
-                        break;
-                    }
-                    case 'show-next-month': {
-                        const date = oldProps.datePicker.calendar.date;
-                        const newProps: AppProps = {
-                            ...oldProps,
-                            datePicker: {
-                                ...oldProps.datePicker,
-                                calendar: {
-                                    ...oldProps.datePicker.calendar,
-                                    date: new Date(date.getFullYear(), date.getMonth() + 1),
-                                }
-                            }
-                        };
-                        rerender(newProps);
-                        break;
-                    }
-                    case 'show-previous-month': {
-                        const date = oldProps.datePicker.calendar.date;
-                        const newProps: AppProps = {
-                            ...oldProps,
-                            datePicker: {
-                                ...oldProps.datePicker,
-                                calendar: {
-                                    ...oldProps.datePicker.calendar,
-                                    date:new Date(date.getFullYear(), date.getMonth() - 1),
-                                }
-                            }
-                        };
-                        rerender(newProps);
-                        break;
-                    }
-                    default: return broke(concern);
-                }
-            },
-        },
-        inputForm: {
-            pickedDate: new Date(),
-            when: concern => {
-                switch(concern.about) {
-                    case 'show-calendar': {
-                        const newProps: AppProps = {
-                            ...oldProps,
-                            datePicker: {
-                                ...oldProps.datePicker,
-                                isCalendarToShow: concern.isCalendarToShow
-                            }
-                        };
-                        rerender(newProps);
-                        break;
-                    }
-                    default: return broke(concern.about);
-                }
-            },
-        },
         isCalendarToShow: false,
-    }
+        pickedDate: null,
+        anchorDate: new Date(),
+        when: concern => {
+            switch (concern.about) {
+                case 'date-is-picked': {
+                    const newProps: AppProps = {
+                        ...oldProps,
+                        datePicker: {
+                            ...oldProps.datePicker,
+                            pickedDate: concern.pickedDate,
+                        }
+                    };
+                    rerender(newProps);
+                    break;
+                }
+                case 'show-next-month': {
+                    const { anchorDate } = oldProps.datePicker;
+                    const newProps: AppProps = {
+                        ...oldProps,
+                        datePicker: {
+                            ...oldProps.datePicker,
+                            anchorDate: new Date(anchorDate.getFullYear(), anchorDate.getMonth() + 1),
+                        }
+                    };
+                    rerender(newProps);
+                    break;
+                }
+                case 'show-previous-month': {
+                    const { anchorDate } = oldProps.datePicker;
+                    const newProps: AppProps = {
+                        ...oldProps,
+                        datePicker: {
+                            ...oldProps.datePicker,
+                            anchorDate: new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1),
+                        }
+                    };
+                    rerender(newProps);
+                    break;
+                }
+                case 'show-calendar': {
+                    const newProps: AppProps = {
+                        ...oldProps,
+                        datePicker: {
+                            ...oldProps.datePicker,
+                            isCalendarToShow: concern.isCalendarToShow
+                        }
+                    };
+                    rerender(newProps);
+                    break;
+                }
+                default: return broke(concern);
+            }
+        },
+    },
 }
 
 

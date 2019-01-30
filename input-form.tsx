@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 export interface InputFormProps {
-    pickedDate: Date;
+    pickedDate: Date | null;
     when: (concern: InputFormConcerns) => void;
 }
 
-type InputFormConcerns = ShowCalendarConcern;
+export type InputFormConcerns = ShowCalendarConcern;
 
 export interface ShowCalendarConcern {
     about: 'show-calendar';
@@ -17,7 +17,7 @@ interface State {
 }
 export class InputForm extends React.Component<InputFormProps, State> {
     state = {
-        text: this.props.pickedDate.toLocaleString()
+        text: this.props.pickedDate === null ? '' : this.props.pickedDate.toLocaleString()
     }
     render() {
         const { text } = this.state;
