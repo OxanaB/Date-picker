@@ -4,15 +4,14 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.date-picker {
+.calendar {
   max-width: fit-content;
-  padding: 10px;
 }
-.nav {
+.calendar .nav {
   display: flex;
   justify-content: space-between;
 }
-.month-viewer {
+.calendar .month-viewer {
   width: 176px;
   text-transform: uppercase;
   text-align: center;
@@ -21,7 +20,7 @@
   padding-top: 6px;
   margin: 10px 0px;
 }
-.previous-month {
+.calendar .previous-month {
   display: block;
   width: 50px;
   height: 40px;
@@ -32,7 +31,7 @@
   background-size: cover;
   background-image: url(/arrow_left.png);
 }
-.next-month {
+.calendar .next-month {
   display: block;
   width: 50px;
   height: 40px;
@@ -43,20 +42,20 @@
   background-size: cover;
   background-image: url(/arrow_right.png);
 }
-td {
+.calendar td {
   border: 1px solid lightgray;
   text-align: center;
   overflow: hidden;
 }
-a {
+.calendar a {
   display: block;
   padding: 10px;
   color: black;
   text-decoration: none;
 }
-a:hover {
+.calendar a:hover {
   text-decoration: underline;
 }
-a:active {
+.calendar a:active {
   background-color: lightgray;
 }

@@ -1,13 +1,11 @@
 import * as React from 'react';
 
-export interface InputFormProps {
+export interface DateInputProps {
     pickedDate: Date | null;
-    when: (concern: InputFormConcerns) => void;
+    when: (concern: DateInputConcern) => void;
 }
 
-export type InputFormConcerns = ShowCalendarConcern;
-
-export interface ShowCalendarConcern {
+export interface DateInputConcern {
     about: 'show-calendar';
     isCalendarToShow: boolean;
 }
@@ -15,14 +13,14 @@ export interface ShowCalendarConcern {
 interface State {
     text: string;
 }
-export class InputForm extends React.Component<InputFormProps, State> {
+export class DateInput extends React.Component<DateInputProps, State> {
     state = {
-        text: this.props.pickedDate === null ? '' : this.props.pickedDate.toLocaleString()
+        text: this.props.pickedDate === null ? '' : this.props.pickedDate.toLocaleDateString()
     }
     render() {
         const { text } = this.state;
-        return <form>
-            <legend>Choose date: </legend>
+        return <>
+            <legend>Дата приезда: </legend>
             <input type="text"
                 value={text}
                 onFocus={() => {
@@ -32,6 +30,6 @@ export class InputForm extends React.Component<InputFormProps, State> {
                     this.setState({ text: e.currentTarget.value });
                 }}
             />
-        </form>
+        </>
     }
 }
