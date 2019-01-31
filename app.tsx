@@ -2,9 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { DatePicker, DatePickerProps } from './date-picker';
 import { broke } from './utils';
+import { Form } from './form';
 
 interface AppProps {
     datePicker: DatePickerProps;
+
 }
 
 let oldProps: AppProps = {
@@ -72,7 +74,7 @@ rerender(oldProps);
 function rerender(newProps: AppProps): void {
     oldProps = newProps;
     ReactDOM.render(
-        <DatePicker {...oldProps.datePicker} />,
+        <Form {...oldProps.datePicker} />,
         document.getElementById('root')
     )
 }
