@@ -1,80 +1,121 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DatePicker, DatePickerProps } from './date-picker';
-import { broke } from './utils';
-import { Form } from './form';
+import { Form, FormProps, FormConcern } from './form';
+import { diveRequests } from './dive-requests';
 
-interface AppProps {
-    datePicker: DatePickerProps;
 
-}
-
-let oldProps: AppProps = {
-    datePicker: {
-        isCalendarToShow: false,
-        pickedDate: null,
-        anchorDate: new Date(),
-        when: concern => {
-            switch (concern.about) {
-                case 'date-is-picked': {
-                    const newProps: AppProps = {
-                        ...oldProps,
-                        datePicker: {
-                            ...oldProps.datePicker,
-                            pickedDate: concern.pickedDate,
-                        }
-                    };
-                    rerender(newProps);
-                    break;
+let oldProps: FormProps = {
+    name: '',
+    email: '',
+    telephone: '',
+    level: '',
+    pickedDate: null,
+    anchorDate: new Date,
+    isCalendarToShow: false,
+    hotel: '',
+    message: '',
+    when: (concern: FormConcern) => {
+        switch (concern.about) {
+            case 'name-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    name: concern.name
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'email-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    email: concern.email
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'telephone-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    telephone: concern.telephone
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'level-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    level: concern.level
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'hotel-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    hotel: concern.hotel
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'message-entered': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    message: concern.message
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'show-calendar': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    isCalendarToShow: concern.isCalendarToShow
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'show-next-month': {
+                const date = oldProps.anchorDate;
+                const newProps: FormProps = {
+                    ...oldProps,
+                    anchorDate: new Date(date.getFullYear(), date.getMonth() + 1)
                 }
-                case 'show-next-month': {
-                    const { anchorDate } = oldProps.datePicker;
-                    const newProps: AppProps = {
-                        ...oldProps,
-                        datePicker: {
-                            ...oldProps.datePicker,
-                            anchorDate: new Date(anchorDate.getFullYear(), anchorDate.getMonth() + 1),
-                        }
-                    };
-                    rerender(newProps);
-                    break;
-                }
-                case 'show-previous-month': {
-                    const { anchorDate } = oldProps.datePicker;
-                    const newProps: AppProps = {
-                        ...oldProps,
-                        datePicker: {
-                            ...oldProps.datePicker,
-                            anchorDate: new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1),
-                        }
-                    };
-                    rerender(newProps);
-                    break;
-                }
-                case 'show-calendar': {
-                    const newProps: AppProps = {
-                        ...oldProps,
-                        datePicker: {
-                            ...oldProps.datePicker,
-                            isCalendarToShow: concern.isCalendarToShow
-                        }
-                    };
-                    rerender(newProps);
-                    break;
-                }
-                default: return broke(concern);
+                rerender(newProps);
+                break;
+            };
+            case 'show-previous-month': {
+                const date = oldProps.anchorDate; 
+                const newProps: FormProps = {
+                    ...oldProps,
+                    anchorDate: new Date(date.getFullYear(), date.getMonth() - 1)
+                };
+                rerender(newProps);
+                break;
+            };
+            case 'date-is-picked': {
+                const newProps: FormProps = {
+                    ...oldProps,
+                    pickedDate: concern.pickedDate,
+                    isCalendarToShow: false
+                };
+                rerender(newProps);
+                break;
             }
-        },
+            
+
+        }
+
     },
+    newDiveRequest: diveRequests,
 }
+
 
 
 rerender(oldProps);
 
-function rerender(newProps: AppProps): void {
+function rerender(newProps: FormProps): void {
     oldProps = newProps;
     ReactDOM.render(
-        <Form {...oldProps.datePicker} />,
+        <Form {...oldProps} />,
         document.getElementById('root')
     )
 }
+

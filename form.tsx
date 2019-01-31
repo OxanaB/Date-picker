@@ -8,15 +8,25 @@ import { Hotel, HotelConcern, HotelProps } from './hotel';
 import { Message, MessageConcern, MessageProps } from './message';
 import { DiveRequest } from './dive-requests';
 
-type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
+export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
 
 export interface FormProps {
+    name: string;
+    email: string;
+    telephone: string;
+    level: string;
+    pickedDate: Date | null;
+    anchorDate: Date;
+    isCalendarToShow: boolean;
+    hotel: string;
+    message: string;
     newDiveRequest: DiveRequest[];
     when: (concern: FormConcern) => void;
 }
 
 export class Form extends React.Component<FormProps> {
     render() {
+        const { name, email, telephone, pickedDate, anchorDate, isCalendarToShow, level, hotel, message } = this.props;
         const nameProps: NameProps = {
             name,
             when: concern => {
@@ -61,29 +71,31 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
-        return <form>
-            <Name {...nameProps} />
-            <Email {...emailProps} />
-            <Telephone {...telephoneProps} />
-            <DiveLevel {...diveLevelProps} />
-            <label htmlFor="arrivalDate">Дата приезда:
+        return <>
+            <form>
+                <Name {...nameProps} />
+                <Email {...emailProps} />
+                <Telephone {...telephoneProps} />
+                <DiveLevel {...diveLevelProps} />
                 <DatePicker {...datePickerProps} />
-            </label>
-            <Hotel {...hotelProps} />
-            <Message {...messageProps} />
-            <button type="Submit" onClick={e => {
+                <Hotel {...hotelProps} />
+                <Message {...messageProps} />
+            </form>
+            <button onClick={e => {
                 e.preventDefault;
-                const newDiveRequest: DiveRequest[] = [{
+                const newDiveRequest: DiveRequest = {
                     name: nameProps.name,
                     email: emailProps.email,
                     telephone: telephoneProps.telephone,
                     diveLevel: diveLevelProps.level,
                     arrivalDate: datePickerProps.pickedDate,
                     hotel: hotelProps.hotel,
-                    message: messageProps.message   
-                }]
-                newDiveRequest.push();
+                    message: messageProps.message
+                }
+                const diveRequests: DiveRequest[] = [];
+                diveRequests.push(newDiveRequest);
+                console.log(diveRequests);
             }}>Отправить заявку</button>
-        </form>
+        </>
     }
 }

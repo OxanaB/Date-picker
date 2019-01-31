@@ -14,7 +14,8 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
     render() {
         const { level } = this.props;
         return <>
-            <label htmlFor="level">Ваш дайверский уровень 
+            <label htmlFor="level">
+                <legend>Ваш дайверский уровень</legend>
                 <input type="text" value={level}
                     onChange={e => {
                         this.props.when({ about: 'level-entered', level: e.currentTarget.value })

@@ -14,7 +14,8 @@ export class Email extends React.Component<EmailProps> {
     render() {
         const { email } = this.props;
         return <>
-            <label htmlFor="email">E-mail: 
+            <label htmlFor="email"> 
+                <legend>E-mail:</legend>
                 <input type="text" value={email}
                     onChange={e => {
                         this.props.when({ about: 'email-entered', email: e.currentTarget.value })

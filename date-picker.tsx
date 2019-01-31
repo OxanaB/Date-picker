@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { InputForm, InputFormProps, InputFormConcerns } from './input-form';
+import { DateInput, DateInputProps, DateInputConcern } from './date-input';
 import { Calendar, CalendarProps, CalendarConcerns } from './calendar';
 
-export type DatePickerConcern = CalendarConcerns | InputFormConcerns;
+export type DatePickerConcern = CalendarConcerns | DateInputConcern;
 
 export interface DatePickerProps {
     anchorDate: Date;
@@ -20,14 +20,14 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 this.props.when(concern);
             }
         };
-        const inputFormProps: InputFormProps = {
+        const inputFormProps: DateInputProps = {
             pickedDate,
             when: concern => {
                 this.props.when(concern);
             }
         };
         return <div className="date-picker">
-            <InputForm key={pickedDate !== null ? pickedDate.toLocaleString() : ''} {...inputFormProps} />
+            <DateInput key={pickedDate !== null ? pickedDate.toLocaleString() : ''} {...inputFormProps} />
             {
                 this.props.isCalendarToShow
                     ? <Calendar {...calendarProps} />
