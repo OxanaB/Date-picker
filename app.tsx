@@ -2,6 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
+import { matchOptions } from './utils';
+import { diveLevelOptions } from './type-ahead-options';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -22,7 +24,12 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'level-input': {
-                this.setState({ level: concern.level });
+                const matchedOptions = matchOptions(diveLevelOptions, concern.level);
+                this.setState({ 
+                    level: concern.level, 
+                    option: matchedOptions,
+                    isOptionToShow: concern.isOptionToShow
+                 });
                 break;
             };
             case 'hotel-input': {
@@ -54,10 +61,7 @@ export class App extends React.Component<{}, FormProps> {
                 })
                 break;
             }
-
-
         }
-
     }
 
     state = {
@@ -67,6 +71,8 @@ export class App extends React.Component<{}, FormProps> {
         telephone: '',
         isTelValid: true,
         level: '',
+        option: null,
+        isOptionToShow: false,
         pickedDate: null,
         anchorDate: new Date,
         isCalendarToShow: false,

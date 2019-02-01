@@ -7,6 +7,7 @@ import { DatePicker, DatePickerProps, DatePickerConcern } from './date-picker';
 import { Hotel, HotelConcern, HotelProps } from './hotel';
 import { Message, MessageConcern, MessageProps } from './message';
 import { DiveRequest } from './dive-requests';
+import { matchOptions } from './utils';
 
 export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
 
@@ -16,7 +17,9 @@ export interface FormProps {
     isEmailValid: boolean;
     telephone: string;
     isTelValid: boolean;
-    level: string;
+    level: string; 
+    option: string[] | null;
+    isOptionToShow: boolean;
     pickedDate: Date | null;
     anchorDate: Date;
     isCalendarToShow: boolean;
@@ -29,8 +32,8 @@ export interface FormProps {
 export class Form extends React.Component<FormProps> {
     render() {
         const {
-            name, email, telephone, pickedDate, anchorDate,
-            isCalendarToShow, level, hotel, message, isEmailValid, isTelValid
+            name, email, telephone, pickedDate, anchorDate, isOptionToShow,
+            isCalendarToShow, level, hotel, message, isEmailValid, isTelValid, option,
         } = this.props;
         const nameProps: NameProps = {
             name,
@@ -51,7 +54,7 @@ export class Form extends React.Component<FormProps> {
             }
         };
         const diveLevelProps: DiveLevelProps = {
-            level,
+            level, option, isOptionToShow,
             when: concern => {
                 this.props.when(concern);
             }

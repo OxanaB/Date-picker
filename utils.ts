@@ -95,3 +95,8 @@ export function increment<T>(step: number, origin: number, times: number, act:(a
 export function broke(never:never): never {
     return never;
 }
+
+export function matchOptions(options: string[], text: string): string[] {
+    const filtered = options.filter(option => option.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
+    return filtered;
+}
