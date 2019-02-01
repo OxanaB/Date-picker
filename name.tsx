@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface NameConcern {
-    about: 'name-entered';
+    about: 'name-input';
     name: string
 }
 
@@ -18,7 +18,7 @@ export class Name extends React.Component<NameProps> {
                 <div>Имя, фамилия</div>
                 <div><input type="text" value={name}
                     onChange={e => {
-                        this.props.when({ about: 'name-entered', name: e.currentTarget.value })
+                        this.props.when({ about: 'name-input', name: e.currentTarget.value })
                     }} /></div>
             </label>
         </>

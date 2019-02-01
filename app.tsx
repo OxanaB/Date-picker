@@ -7,29 +7,29 @@ export class App extends React.Component<{}, FormProps> {
 
     private when = (concern: FormConcern) => {
         switch (concern.about) {
-            case 'name-entered': {
+            case 'name-input': {
                 this.setState({ name: concern.name });
                 break;
             };
-            case 'email-entered': {
+            case 'email-input': {
                 const isEmailValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(concern.email);
                 this.setState({ email: concern.email, isEmailValid });
                 break;
             };
-            case 'telephone-entered': {
+            case 'telephone-input': {
                 const isTelValid = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(concern.telephone);
                 this.setState({ telephone: concern.telephone, isTelValid });
                 break;
             };
-            case 'level-entered': {
+            case 'level-input': {
                 this.setState({ level: concern.level });
                 break;
             };
-            case 'hotel-entered': {
+            case 'hotel-input': {
                 this.setState({ hotel: concern.hotel });
                 break;
             };
-            case 'message-entered': {
+            case 'message-input': {
                 this.setState({ message: concern.message });
                 break;
             };

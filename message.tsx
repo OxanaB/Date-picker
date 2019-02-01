@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface MessageConcern {
-    about: 'message-entered';
+    about: 'message-input';
     message: string
 }
 
@@ -18,7 +18,7 @@ export class Message extends React.Component<MessageProps> {
                 <div>Ваше сообщение</div>
                 <div><textarea value={message}
                     onChange={e => {
-                        this.props.when({ about: 'message-entered', message: e.currentTarget.value })
+                        this.props.when({ about: 'message-input', message: e.currentTarget.value })
                      }} /></div>
             </label>
         </>

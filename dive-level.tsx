@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface DiveLevelConcern {
-    about: 'level-entered';
+    about: 'level-input';
     level: string
 }
 
@@ -18,7 +18,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                 <div>Ваш дайверский уровень</div>
                 <div><input type="text" value={level}
                     onChange={e => {
-                        this.props.when({ about: 'level-entered', level: e.currentTarget.value })
+                        this.props.when({ about: 'level-input', level: e.currentTarget.value })
                     }} /></div>
             </label>
         </>
