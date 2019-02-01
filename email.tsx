@@ -13,15 +13,17 @@ export interface EmailProps {
 
 export class Email extends React.Component<EmailProps> {
     render() {
-        
+
         const { email, isEmailValid } = this.props;
         return <>
-            <label htmlFor="email"> 
-                <legend>E-mail</legend>
-                <input className={isEmailValid ? '': 'invalid'} type="text" value={email}
-                    onChange={e => {
-                        this.props.when({ about: 'email-entered', email: e.currentTarget.value })
-                    }} />
+            <label>
+                <div>E-mail</div>
+                <div>
+                    <input className={isEmailValid ? '' : 'invalid'} type="text" value={email}
+                        onChange={e => {
+                            this.props.when({ about: 'email-entered', email: e.currentTarget.value })
+                        }} />
+                </div>
             </label>
         </>
     }

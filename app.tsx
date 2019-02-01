@@ -17,7 +17,8 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'telephone-entered': {
-                this.setState({ telephone: concern.telephone });
+                const isTelValid = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(concern.telephone);
+                this.setState({ telephone: concern.telephone, isTelValid });
                 break;
             };
             case 'level-entered': {
@@ -64,6 +65,7 @@ export class App extends React.Component<{}, FormProps> {
         email: '',
         isEmailValid: true,
         telephone: '',
+        isTelValid: true,
         level: '',
         pickedDate: null,
         anchorDate: new Date,

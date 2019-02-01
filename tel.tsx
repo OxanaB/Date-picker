@@ -7,19 +7,20 @@ export interface TelephoneConcern {
 
 export interface TelephoneProps {
     telephone: string;
+    isTelValid: boolean;
     when: (concern: TelephoneConcern) => void;
 }
 
 export class Telephone extends React.Component<TelephoneProps> {
     render() {
-        const { telephone } = this.props;
+        const { telephone, isTelValid } = this.props;
         return <>
-            <label htmlFor="telephone">
-                <legend>Номер телефона</legend>
-                <input type="text" value={telephone}
+            <label>
+                <div>Номер телефона</div>
+                <div><input className={isTelValid ? '' : 'invalid'} type="text" value={telephone}
                     onChange={e => {
                         this.props.when({ about: 'telephone-entered', telephone: e.currentTarget.value })
-                    }} />
+                    }} /></div>
             </label>
         </>
     }
