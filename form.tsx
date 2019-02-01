@@ -13,6 +13,7 @@ export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLe
 export interface FormProps {
     name: string;
     email: string;
+    isEmailValid: boolean;
     telephone: string;
     level: string;
     pickedDate: Date | null;
@@ -26,7 +27,10 @@ export interface FormProps {
 
 export class Form extends React.Component<FormProps> {
     render() {
-        const { name, email, telephone, pickedDate, anchorDate, isCalendarToShow, level, hotel, message } = this.props;
+        const {
+            name, email, telephone, pickedDate, anchorDate,
+            isCalendarToShow, level, hotel, message, isEmailValid,
+        } = this.props;
         const nameProps: NameProps = {
             name,
             when: concern => {
@@ -34,7 +38,7 @@ export class Form extends React.Component<FormProps> {
             }
         };
         const emailProps: EmailProps = {
-            email,
+            email, isEmailValid,
             when: concern => {
                 this.props.when(concern);
             }
@@ -71,6 +75,7 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
+        const isValid = isEmailValid;
         return <>
             <form>
                 <Name {...nameProps} />
@@ -81,16 +86,16 @@ export class Form extends React.Component<FormProps> {
                 <Hotel {...hotelProps} />
                 <Message {...messageProps} />
             </form>
-            <button onClick={e => {
-                e.preventDefault;
+            <button disabled={!isValid} onClick={e => {
+                e.preventDefault();
                 const newDiveRequest: DiveRequest = {
-                    name: nameProps.name,
-                    email: emailProps.email,
-                    telephone: telephoneProps.telephone,
-                    diveLevel: diveLevelProps.level,
-                    arrivalDate: datePickerProps.pickedDate,
-                    hotel: hotelProps.hotel,
-                    message: messageProps.message
+                    name,
+                    email,
+                    telephone,
+                    diveLevel: level,
+                    arrivalDate: pickedDate,
+                    hotel,
+                    message
                 }
                 const diveRequests: DiveRequest[] = [];
                 diveRequests.push(newDiveRequest);

@@ -7,16 +7,18 @@ export interface EmailConcern {
 
 export interface EmailProps {
     email: string;
+    isEmailValid: boolean;
     when: (concern: EmailConcern) => void;
 }
 
 export class Email extends React.Component<EmailProps> {
     render() {
-        const { email } = this.props;
+        
+        const { email, isEmailValid } = this.props;
         return <>
             <label htmlFor="email"> 
-                <legend>E-mail:</legend>
-                <input type="text" value={email}
+                <legend>E-mail</legend>
+                <input className={isEmailValid ? '': 'invalid'} type="text" value={email}
                     onChange={e => {
                         this.props.when({ about: 'email-entered', email: e.currentTarget.value })
                     }} />

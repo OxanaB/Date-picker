@@ -3,119 +3,81 @@ import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
 
+export class App extends React.Component<{}, FormProps> {
 
-let oldProps: FormProps = {
-    name: '',
-    email: '',
-    telephone: '',
-    level: '',
-    pickedDate: null,
-    anchorDate: new Date,
-    isCalendarToShow: false,
-    hotel: '',
-    message: '',
-    when: (concern: FormConcern) => {
+    private when = (concern: FormConcern) => {
         switch (concern.about) {
             case 'name-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    name: concern.name
-                };
-                rerender(newProps);
+                this.setState({ name: concern.name });
                 break;
             };
             case 'email-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    email: concern.email
-                };
-                rerender(newProps);
+                const isEmailValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(concern.email);
+                this.setState({ email: concern.email, isEmailValid });
                 break;
             };
             case 'telephone-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    telephone: concern.telephone
-                };
-                rerender(newProps);
+                this.setState({ telephone: concern.telephone });
                 break;
             };
             case 'level-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    level: concern.level
-                };
-                rerender(newProps);
+                this.setState({ level: concern.level });
                 break;
             };
             case 'hotel-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    hotel: concern.hotel
-                };
-                rerender(newProps);
+                this.setState({ hotel: concern.hotel });
                 break;
             };
             case 'message-entered': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    message: concern.message
-                };
-                rerender(newProps);
+                this.setState({ message: concern.message });
                 break;
             };
             case 'show-calendar': {
-                const newProps: FormProps = {
-                    ...oldProps,
-                    isCalendarToShow: concern.isCalendarToShow
-                };
-                rerender(newProps);
+                this.setState({ isCalendarToShow: concern.isCalendarToShow });
                 break;
             };
             case 'show-next-month': {
-                const date = oldProps.anchorDate;
-                const newProps: FormProps = {
-                    ...oldProps,
-                    anchorDate: new Date(date.getFullYear(), date.getMonth() + 1)
-                }
-                rerender(newProps);
+                const date = this.state.anchorDate;
+                this.setState({ anchorDate: new Date(date.getFullYear(), date.getMonth() + 1) });
                 break;
             };
             case 'show-previous-month': {
-                const date = oldProps.anchorDate; 
-                const newProps: FormProps = {
-                    ...oldProps,
-                    anchorDate: new Date(date.getFullYear(), date.getMonth() - 1)
-                };
-                rerender(newProps);
+                const date = this.state.anchorDate;
+                this.setState({ anchorDate: new Date(date.getFullYear(), date.getMonth() - 1) });
                 break;
             };
             case 'date-is-picked': {
-                const newProps: FormProps = {
-                    ...oldProps,
+                this.setState({
                     pickedDate: concern.pickedDate,
                     isCalendarToShow: false
-                };
-                rerender(newProps);
+                })
                 break;
             }
-            
+
 
         }
 
-    },
-    newDiveRequest: diveRequests,
+    }
+
+    state = {
+        name: '',
+        email: '',
+        isEmailValid: true,
+        telephone: '',
+        level: '',
+        pickedDate: null,
+        anchorDate: new Date,
+        isCalendarToShow: false,
+        hotel: '',
+        message: '',
+        when: this.when,
+        newDiveRequest: diveRequests,
+    }
+
+    render() {
+        const { state } = this;
+        return <Form {...state} />;
+    }
 }
 
-
-
-rerender(oldProps);
-
-function rerender(newProps: FormProps): void {
-    oldProps = newProps;
-    ReactDOM.render(
-        <Form {...oldProps} />,
-        document.getElementById('root')
-    )
-}
-
+ReactDOM.render(<App />, document.getElementById('root'));
