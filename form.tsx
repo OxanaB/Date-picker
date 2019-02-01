@@ -77,13 +77,13 @@ export class Form extends React.Component<FormProps> {
             }
         };
         const isValid = isEmailValid && isTelValid;
-        return <>
+        return <div className="dive-request-form">
             <form>
                 <div><Name {...nameProps} /></div>
                 <div><Email {...emailProps} /></div>
                 <div><Telephone {...telephoneProps} /></div>
                 <div><DiveLevel {...diveLevelProps} /></div>
-                <div><DatePicker {...datePickerProps} /></div>
+                <div className="date-picker"><DatePicker {...datePickerProps} /></div>
                 <div><Hotel {...hotelProps} /></div>
                 <div><Message {...messageProps} /></div>
             </form>
@@ -102,6 +102,6 @@ export class Form extends React.Component<FormProps> {
                 diveRequests.push(newDiveRequest);
                 console.log(diveRequests);
             }}>Отправить заявку</button>
-        </>
+        </div>
     }
 }
