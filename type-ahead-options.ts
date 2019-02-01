@@ -1,12 +1,6 @@
 export const diveLevelOptions = [
-<<<<<<< HEAD
-    '0',
-    'новичок',
-    'ноль', 
-=======
     'новичок',
     'ноль',
->>>>>>> big-app
     'начальный, без сертификата',
     'отсутствует',
     'интро',
@@ -49,25 +43,6 @@ export const diveLevelOptions = [
     'Normoxic trimix diver',
     'Trimix diver',
     'rebreather',
-<<<<<<< HEAD
-    '* CEDIP',
-    'CEDIP 1*',
-    '* UDIP',
-    'UDIP 1*',
-    '* CMAS',
-    'CMAS 1*',
-    '** CEDIP',
-    'CEDIP 2*',
-    '** UDIP',
-    'UDIP 2*',
-    '** CMAS',
-    'CMAS 2*',
-    '*** CEDIP',
-    'CEDIP 3*',
-    '*** UDIP',
-    'UDIP 3*',
-    '*** CMAS',
-=======
     'CEDIP 1*',
     'UDIP 1*',
     'CMAS 1*',
@@ -76,7 +51,6 @@ export const diveLevelOptions = [
     'CMAS 2*',
     'CEDIP 3*',
     'UDIP 3*',
->>>>>>> big-app
     'CMAS 3*',
     'одна звезда',
     'две звезды',
