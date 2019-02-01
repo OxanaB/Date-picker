@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface HotelConcern {
-    about: 'hotel-entered';
+    about: 'hotel-input';
     hotel: string
 }
 
@@ -18,7 +18,7 @@ export class Hotel extends React.Component<HotelProps> {
                 <div>Отель</div>
                 <div><input type="text" value={hotel}
                     onChange={e => {
-                        this.props.when({ about: 'hotel-entered', hotel: e.currentTarget.value })
+                        this.props.when({ about: 'hotel-input', hotel: e.currentTarget.value })
                     }} /></div>
             </label>
         </>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface EmailConcern {
-    about: 'email-entered';
+    about: 'email-input';
     email: string
 }
 
@@ -21,7 +21,7 @@ export class Email extends React.Component<EmailProps> {
                 <div>
                     <input className={isEmailValid ? '' : 'invalid'} type="text" value={email}
                         onChange={e => {
-                            this.props.when({ about: 'email-entered', email: e.currentTarget.value })
+                            this.props.when({ about: 'email-input', email: e.currentTarget.value })
                         }} />
                 </div>
             </label>

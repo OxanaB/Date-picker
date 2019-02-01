@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface TelephoneConcern {
-    about: 'telephone-entered';
+    about: 'telephone-input';
     telephone: string
 }
 
@@ -19,7 +19,7 @@ export class Telephone extends React.Component<TelephoneProps> {
                 <div>Номер телефона</div>
                 <div><input className={isTelValid ? '' : 'invalid'} type="text" value={telephone}
                     onChange={e => {
-                        this.props.when({ about: 'telephone-entered', telephone: e.currentTarget.value })
+                        this.props.when({ about: 'telephone-input', telephone: e.currentTarget.value })
                     }} /></div>
             </label>
         </>
