@@ -14,12 +14,12 @@ export class Hotel extends React.Component<HotelProps> {
     render() {
         const { hotel } = this.props;
         return <>
-            <label htmlFor="hotel">
-                <legend>Отель</legend>
-                <input type="text" value={hotel}
+            <label>
+                <div>Отель</div>
+                <div><input type="text" value={hotel}
                     onChange={e => {
                         this.props.when({ about: 'hotel-entered', hotel: e.currentTarget.value })
-                    }} />
+                    }} /></div>
             </label>
         </>
     }

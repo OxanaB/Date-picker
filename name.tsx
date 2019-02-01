@@ -14,12 +14,12 @@ export class Name extends React.Component<NameProps> {
     render() {
         const { name } = this.props;
         return <>
-            <label htmlFor="name">
-                <legend>Имя, фамилия</legend>
-                <input type="text" value={name}
+            <label>
+                <div>Имя, фамилия</div>
+                <div><input type="text" value={name}
                     onChange={e => {
                         this.props.when({ about: 'name-entered', name: e.currentTarget.value })
-                    }} />
+                    }} /></div>
             </label>
         </>
     }

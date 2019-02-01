@@ -15,6 +15,7 @@ export interface FormProps {
     email: string;
     isEmailValid: boolean;
     telephone: string;
+    isTelValid: boolean;
     level: string;
     pickedDate: Date | null;
     anchorDate: Date;
@@ -29,7 +30,7 @@ export class Form extends React.Component<FormProps> {
     render() {
         const {
             name, email, telephone, pickedDate, anchorDate,
-            isCalendarToShow, level, hotel, message, isEmailValid,
+            isCalendarToShow, level, hotel, message, isEmailValid, isTelValid
         } = this.props;
         const nameProps: NameProps = {
             name,
@@ -44,7 +45,7 @@ export class Form extends React.Component<FormProps> {
             }
         }
         const telephoneProps: TelephoneProps = {
-            telephone,
+            telephone, isTelValid,
             when: concern => {
                 this.props.when(concern);
             }
@@ -75,16 +76,16 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
-        const isValid = isEmailValid;
+        const isValid = isEmailValid && isTelValid;
         return <>
             <form>
-                <Name {...nameProps} />
-                <Email {...emailProps} />
-                <Telephone {...telephoneProps} />
-                <DiveLevel {...diveLevelProps} />
-                <DatePicker {...datePickerProps} />
-                <Hotel {...hotelProps} />
-                <Message {...messageProps} />
+                <div><Name {...nameProps} /></div>
+                <div><Email {...emailProps} /></div>
+                <div><Telephone {...telephoneProps} /></div>
+                <div><DiveLevel {...diveLevelProps} /></div>
+                <div><DatePicker {...datePickerProps} /></div>
+                <div><Hotel {...hotelProps} /></div>
+                <div><Message {...messageProps} /></div>
             </form>
             <button disabled={!isValid} onClick={e => {
                 e.preventDefault();
