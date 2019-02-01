@@ -13,6 +13,7 @@ export interface DateInputConcern {
 interface State {
     text: string;
 }
+
 export class DateInput extends React.Component<DateInputProps, State> {
     state = {
         text: this.props.pickedDate === null ? '' : this.props.pickedDate.toLocaleDateString()
@@ -20,7 +21,7 @@ export class DateInput extends React.Component<DateInputProps, State> {
     render() {
         const { text } = this.state;
         return <>
-            <legend>Дата приезда: </legend>
+            <legend>Дата приезда</legend>
             <input type="text"
                 value={text}
                 onFocus={() => {
