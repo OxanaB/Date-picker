@@ -26,13 +26,13 @@ export class DatePicker extends React.Component<DatePickerProps> {
                 this.props.when(concern);
             }
         };
-        return <div className="date-picker">
+        return <>
             <DateInput key={pickedDate !== null ? pickedDate.toLocaleString() : ''} {...inputFormProps} />
             {
                 this.props.isCalendarToShow
                     ? <Calendar {...calendarProps} />
                     : null
             }
-        </div>;
+        </>;
     }
 }

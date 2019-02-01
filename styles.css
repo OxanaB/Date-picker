@@ -4,58 +4,92 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.calendar {
-  max-width: fit-content;
+.dive-request-form {
+  position: relative;
+  width: 380px;
+  margin: 15px;
 }
-.calendar .nav {
+.dive-request-form input,
+.dive-request-form textarea {
+  min-width: 350px;
+}
+.dive-request-form button {
+  position: absolute;
+  right: 0;
+  bottom: -40;
+}
+.dive-request-form .invalid {
+  outline-color: red;
+}
+.dive-request-form a {
+  color: black;
+  text-decoration: none;
+}
+.dive-request-form .date-picker svg {
+  margin-left: 5px;
+}
+.dive-request-form .date-picker div:nth-child(2) {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 }
-.calendar .month-viewer {
+.dive-request-form .calendar {
+  max-width: fit-content;
+  position: fixed;
+  bottom: 100;
+  left: 100;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  padding: 0px 5px 5px 0px;
+  background-color: #fff;
+}
+.dive-request-form .calendar .nav {
+  display: flex;
+}
+.dive-request-form .calendar .month-viewer {
   width: 176px;
   text-transform: uppercase;
-  text-align: center;
+  height: 40px;
   font-weight: bold;
   background-color: lightgray;
   padding-top: 6px;
-  margin: 10px 0px;
 }
-.calendar .previous-month {
+.dive-request-form .calendar .previous-month {
   display: block;
   width: 50px;
   height: 40px;
-  margin: 10px 5px;
+  margin: 0px 5px;
   border: 1px solid grey;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(/arrow_left.png);
 }
-.calendar .next-month {
+.dive-request-form .calendar .next-month {
   display: block;
   width: 50px;
   height: 40px;
-  margin: 10px 5px;
+  margin: 0px 5px;
   border: 1px solid grey;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(/arrow_right.png);
 }
-.calendar td {
+.dive-request-form .calendar td {
   border: 1px solid lightgray;
   text-align: center;
   overflow: hidden;
 }
-.calendar a {
+.dive-request-form .calendar a {
   display: block;
   padding: 10px;
-  color: black;
-  text-decoration: none;
 }
-.calendar a:hover {
+.dive-request-form .calendar a:hover,
+.dive-request-form .calendar a:focus {
   text-decoration: underline;
 }
-.calendar a:active {
+.dive-request-form .calendar a:active {
   background-color: lightgray;
 }
