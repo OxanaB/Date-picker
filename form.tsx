@@ -1,22 +1,29 @@
 import * as React from 'react';
 import { Name, NameProps, NameConcern } from './name';
-import { Email, EmailConcern, EmailProps } from './email';
 import { Telephone, TelephoneConcern, TelephoneProps } from './tel';
 import { DiveLevel, DiveLevelConcern, DiveLevelProps } from './dive-level';
 import { DatePicker, DatePickerProps, DatePickerConcern } from './date-picker';
 import { Hotel, HotelConcern, HotelProps } from './hotel';
 import { Message, MessageConcern, MessageProps } from './message';
 import { DiveRequest } from './dive-requests';
+import { Field, FielderConcern, Fielder } from './field';
 
-export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
+export type FormConcern =
+    | NameConcern
+    | { about: 'email', email: FielderConcern }
+    | TelephoneConcern
+    | DiveLevelConcern
+    | DatePickerConcern
+    | HotelConcern
+    | MessageConcern;
+
 
 export interface FormProps {
     readonly name: string;
-    readonly email: string;
-    readonly isEmailValid: boolean;
+    readonly email: Field;
     readonly telephone: string;
     readonly isTelValid: boolean;
-    readonly level: string; 
+    readonly level: string;
     readonly pickedLevels: string[];
     readonly option: string[] | null;
     readonly isOptionToShow: boolean;
@@ -33,7 +40,7 @@ export class Form extends React.Component<FormProps> {
     render() {
         const {
             name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
-            isCalendarToShow, level, hotel, message, isEmailValid, isTelValid, option,
+            isCalendarToShow, level, hotel, message, isTelValid, option,
         } = this.props;
         const nameProps: NameProps = {
             name,
@@ -41,12 +48,6 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
-        const emailProps: EmailProps = {
-            email, isEmailValid,
-            when: concern => {
-                this.props.when(concern);
-            }
-        }
         const telephoneProps: TelephoneProps = {
             telephone, isTelValid,
             when: concern => {
@@ -79,11 +80,21 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
-        const isValid = isEmailValid && isTelValid;
+        const isValid = email.isValid && isTelValid;
         return <div className="dive-request-form">
             <form>
                 <div><Name {...nameProps} /></div>
-                <div><Email {...emailProps} /></div>
+                <div>
+                    <label>
+                        <div>E-mail</div>
+                        <div>
+                            <Fielder
+                                field={email}
+                                when={concern => this.props.when({ about: 'email', email: concern })}
+                            />
+                        </div>
+                    </label>
+                </div>
                 <div><Telephone {...telephoneProps} /></div>
                 <div><DiveLevel {...diveLevelProps} /></div>
                 <div className="date-picker"><DatePicker {...datePickerProps} /></div>
@@ -94,7 +105,7 @@ export class Form extends React.Component<FormProps> {
                 e.preventDefault();
                 const newDiveRequest: DiveRequest = {
                     name,
-                    email,
+                    email: email.value,
                     telephone,
                     diveLevel: pickedLevels,
                     arrivalDate: pickedDate,

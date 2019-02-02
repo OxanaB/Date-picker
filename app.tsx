@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to } from './utils';
+import { matchOptions, to, broke } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 
 export class App extends React.Component<{}, FormProps> {
@@ -13,9 +13,18 @@ export class App extends React.Component<{}, FormProps> {
                 this.setState({ name: concern.name });
                 break;
             };
-            case 'email-input': {
-                const isEmailValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(concern.email);
-                this.setState({ email: concern.email, isEmailValid });
+            case 'email': {
+                switch (concern.email.about) {
+                    case 'field-input': {
+                        const {value} = concern.email;
+                        const isValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(value);
+                        this.setState({
+                            email: { value, isValid }
+                        });
+                        break;
+                    }
+                    default: return broke(concern.email.about);
+                }
                 break;
             };
             case 'telephone-input': {
@@ -95,8 +104,7 @@ export class App extends React.Component<{}, FormProps> {
 
     state = to<FormProps>({
         name: '',
-        email: '',
-        isEmailValid: true,
+        email: { value: '', isValid: true },
         telephone: '',
         isTelValid: true,
         level: '',
