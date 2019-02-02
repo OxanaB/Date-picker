@@ -100,3 +100,5 @@ export function matchOptions(options: string[], text: string): string[] {
     const filtered = options.filter(option => option.toLocaleLowerCase().includes(text.toLocaleLowerCase()));
     return filtered;
 }
+
+export function to<T>(value: T): T { return value;}

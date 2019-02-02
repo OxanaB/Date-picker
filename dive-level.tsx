@@ -1,31 +1,42 @@
 import * as React from 'react';
 
-export interface DiveLevelConcern {
+export interface LevelInputConcern {
     about: 'level-input';
     level: string;
-    isOptionToShow: boolean;
 }
+
+export interface LevelPickedConcern {
+    about: 'level-picked';
+    level: string;
+}
+
+export interface PickedLevelToDeleteConcern {
+    about: 'picked-level-to-delete';
+    level: string;
+}
+
+export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern | PickedLevelToDeleteConcern;
 
 export interface DiveLevelProps {
     level: string;
     option: string[] | null;
     isOptionToShow: boolean;
+    pickedLevels: string[];
     when: (concern: DiveLevelConcern) => void;
 }
 
 export class DiveLevel extends React.Component<DiveLevelProps> {
     render() {
-        const { level, option, isOptionToShow } = this.props;
+        const { level, option, isOptionToShow, pickedLevels } = this.props;
 
         return <>
             <label>
                 <div>Ваш дайверский уровень</div>
-                <div><textarea value={level}
+                <div><input type="text" value={level}
                     onChange={e => {
                         this.props.when({
                             about: 'level-input',
                             level: e.currentTarget.value,
-                            isOptionToShow: true
                         })
                     }} /></div>
                 {
@@ -35,16 +46,25 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                                 <a href="#" onClick={e => {
                                     e.preventDefault();
                                     this.props.when({
-                                        about: 'level-input',
+                                        about: 'level-picked',
                                         level: machedOption,
-                                        isOptionToShow: false
                                     });
-
                                 }}>{machedOption}</a></div>
 
                         })
                         : null
                 }
+                {pickedLevels.map((level, index) => {
+                    return <div key={level}>
+                        {level}
+                        <a href="#" onClick={e => {
+                            e.preventDefault();
+                            this.props.when({
+                                about: 'picked-level-to-delete',
+                                level: level
+                            })
+                        }}>x</a></div>
+                })}
             </label>
         </>
     }

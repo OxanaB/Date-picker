@@ -12,27 +12,28 @@ import { matchOptions } from './utils';
 export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
 
 export interface FormProps {
-    name: string;
-    email: string;
-    isEmailValid: boolean;
-    telephone: string;
-    isTelValid: boolean;
-    level: string; 
-    option: string[] | null;
-    isOptionToShow: boolean;
-    pickedDate: Date | null;
-    anchorDate: Date;
-    isCalendarToShow: boolean;
-    hotel: string;
-    message: string;
-    newDiveRequest: DiveRequest[];
-    when: (concern: FormConcern) => void;
+    readonly name: string;
+    readonly email: string;
+    readonly isEmailValid: boolean;
+    readonly telephone: string;
+    readonly isTelValid: boolean;
+    readonly level: string; 
+    readonly pickedLevels: string[];
+    readonly option: string[] | null;
+    readonly isOptionToShow: boolean;
+    readonly pickedDate: Date | null;
+    readonly anchorDate: Date;
+    readonly isCalendarToShow: boolean;
+    readonly hotel: string;
+    readonly message: string;
+    readonly newDiveRequest: DiveRequest[];
+    readonly when: (concern: FormConcern) => void;
 }
 
 export class Form extends React.Component<FormProps> {
     render() {
         const {
-            name, email, telephone, pickedDate, anchorDate, isOptionToShow,
+            name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
             isCalendarToShow, level, hotel, message, isEmailValid, isTelValid, option,
         } = this.props;
         const nameProps: NameProps = {
@@ -54,7 +55,7 @@ export class Form extends React.Component<FormProps> {
             }
         };
         const diveLevelProps: DiveLevelProps = {
-            level, option, isOptionToShow,
+            level, option, isOptionToShow, pickedLevels,
             when: concern => {
                 this.props.when(concern);
             }

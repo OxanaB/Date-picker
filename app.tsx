@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions } from './utils';
+import { matchOptions, to } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 
 export class App extends React.Component<{}, FormProps> {
@@ -25,11 +25,30 @@ export class App extends React.Component<{}, FormProps> {
             };
             case 'level-input': {
                 const matchedOptions = matchOptions(diveLevelOptions, concern.level);
-                this.setState({ 
-                    level: concern.level, 
+                this.setState({
+                    level: concern.level,
                     option: matchedOptions,
-                    isOptionToShow: concern.isOptionToShow
-                 });
+                    isOptionToShow: true
+                });
+                break;
+            };
+            case 'level-picked': {
+                const { level } = concern;
+                const { pickedLevels } = this.state;
+                const newPickedLevels = pickedLevels.concat(level);
+                this.setState({
+                    pickedLevels: newPickedLevels,
+                    isOptionToShow: false
+                });
+                break;
+            };
+            case 'picked-level-to-delete': {
+                const { pickedLevels } = this.state;
+                const { level } = concern;
+                const newPickedLevels = pickedLevels.filter(oldLevel => oldLevel !== level);
+                this.setState({
+                    pickedLevels: newPickedLevels,
+                });
                 break;
             };
             case 'hotel-input': {
@@ -64,7 +83,7 @@ export class App extends React.Component<{}, FormProps> {
         }
     }
 
-    state = {
+    state = to<FormProps>({
         name: '',
         email: '',
         isEmailValid: true,
@@ -74,13 +93,14 @@ export class App extends React.Component<{}, FormProps> {
         option: null,
         isOptionToShow: false,
         pickedDate: null,
-        anchorDate: new Date,
+        pickedLevels: [],
+        anchorDate: new Date(),
         isCalendarToShow: false,
         hotel: '',
         message: '',
         when: this.when,
         newDiveRequest: diveRequests,
-    }
+    })
 
     render() {
         const { state } = this;
