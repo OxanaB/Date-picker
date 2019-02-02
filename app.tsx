@@ -38,7 +38,8 @@ export class App extends React.Component<{}, FormProps> {
                 const newPickedLevels = pickedLevels.concat(level);
                 this.setState({
                     pickedLevels: newPickedLevels,
-                    isOptionToShow: false
+                    isOptionToShow: false,
+                    level: ''
                 });
                 break;
             };
@@ -48,6 +49,15 @@ export class App extends React.Component<{}, FormProps> {
                 const newPickedLevels = pickedLevels.filter(oldLevel => oldLevel !== level);
                 this.setState({
                     pickedLevels: newPickedLevels,
+                });
+                break;
+            };
+            case 'new-tag-added': {
+                const { pickedLevels } = this.state;
+                const { level } = concern;
+                const addTagLevel = pickedLevels.concat(level);
+                this.setState({
+                    pickedLevels: addTagLevel
                 });
                 break;
             };

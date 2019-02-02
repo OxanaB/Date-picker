@@ -1,5 +1,10 @@
 import * as React from 'react';
 
+export interface NewTagConcern {
+    about: 'new-tag-added';
+    level: string;
+}
+
 export interface LevelInputConcern {
     about: 'level-input';
     level: string;
@@ -15,7 +20,7 @@ export interface PickedLevelToDeleteConcern {
     level: string;
 }
 
-export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern | PickedLevelToDeleteConcern;
+export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern | PickedLevelToDeleteConcern | NewTagConcern;
 
 export interface DiveLevelProps {
     level: string;
@@ -36,8 +41,16 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                     onChange={e => {
                         this.props.when({
                             about: 'level-input',
-                            level: e.currentTarget.value,
+                            level: e.currentTarget.value
                         })
+                    }}
+                    onKeyDown={({ keyCode }) => {
+                        if (keyCode === 13) { 
+                            this.props.when({
+                                about: 'new-tag-added',
+                                level 
+                            })
+                        }
                     }} /></div>
                 {
                     option !== null && isOptionToShow
@@ -54,7 +67,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                         })
                         : null
                 }
-                {pickedLevels.map((level, index) => {
+                {pickedLevels.map(level => {
                     return <div key={level}>
                         {level}
                         <a href="#" onClick={e => {

@@ -7,7 +7,6 @@ import { DatePicker, DatePickerProps, DatePickerConcern } from './date-picker';
 import { Hotel, HotelConcern, HotelProps } from './hotel';
 import { Message, MessageConcern, MessageProps } from './message';
 import { DiveRequest } from './dive-requests';
-import { matchOptions } from './utils';
 
 export type FormConcern = NameConcern | EmailConcern | TelephoneConcern | DiveLevelConcern | DatePickerConcern | HotelConcern | MessageConcern;
 
@@ -97,7 +96,7 @@ export class Form extends React.Component<FormProps> {
                     name,
                     email,
                     telephone,
-                    diveLevel: level,
+                    diveLevel: pickedLevels,
                     arrivalDate: pickedDate,
                     hotel,
                     message
