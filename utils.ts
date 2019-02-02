@@ -7,9 +7,9 @@ export function getRandomElement<T>(array: T[]): T {
     return randomElement;
 }
 export const colors = [
-        "#66B032",
-        "#B2D732"
-    ]
+    "#66B032",
+    "#B2D732"
+]
 export function getRandomX11Color() {
     const colorRandom = getRandomElement(colors);
     return colorRandom;
@@ -51,8 +51,8 @@ export function swapInArray<T>(array: T[], oneIndex: number, anotherIndex: numbe
     return copied;
 }
 
-export function map<In, Out>(value: In[], instead: (value:In) => Out) {
-    const resulut:  Out[] = [];
+export function map<In, Out>(value: In[], instead: (value: In) => Out) {
+    const resulut: Out[] = [];
     for (let index = 0; index < value.length; index++) {
         const inValue = value[index];
         const outValue = instead(inValue);
@@ -61,39 +61,39 @@ export function map<In, Out>(value: In[], instead: (value:In) => Out) {
     return resulut;
 }
 
-export function filter<T>(all: T[], shouldKeep: (val:T) => boolean): T[] {
+export function filter<T>(all: T[], shouldKeep: (val: T) => boolean): T[] {
     const result: T[] = [];
-    for (let index=0; index < all.length; index++) {
+    for (let index = 0; index < all.length; index++) {
         const val = all[index]
-        if (shouldKeep(val) ) {
+        if (shouldKeep(val)) {
             result.push(val)
-        };         
+        };
     } return result;
 }
 
-export function fold<T,R>(vals: T[], result:R, take:(result:R, val:T) => R):R {
-    for (let index=0; index< vals.length; index++) {
+export function fold<T, R>(vals: T[], result: R, take: (result: R, val: T) => R): R {
+    for (let index = 0; index < vals.length; index++) {
         const val = vals[index];
         result = take(result, val);
     } return result;
 }
 
-export function sum(numbers: number[]): number{
+export function sum(numbers: number[]): number {
     const sum = fold(numbers, 0, (sum, number) => sum + number);
     return sum;
 }
 
-export function increment<T>(step: number, origin: number, times: number, act:(at:number, index: number) => T) {
+export function increment<T>(step: number, origin: number, times: number, act: (at: number, index: number) => T) {
     const result: T[] = [];
-    for (let index=0; index < times; index++) {
-        const at = origin + step*index; 
+    for (let index = 0; index < times; index++) {
+        const at = origin + step * index;
         const value = act(at, index);
         result.push(value);
     } return result;
 }
 
-export function broke(never:never): never {
-    return never;
+export function broke(never: never): never {
+    throw Error('Unexpected case');
 }
 
 export function matchOptions(options: string[], text: string): string[] {
@@ -101,4 +101,87 @@ export function matchOptions(options: string[], text: string): string[] {
     return filtered;
 }
 
-export function to<T>(value: T): T { return value;}
+export function to<T>(value: T): T { return value; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const x = { a: 1 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

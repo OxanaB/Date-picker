@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Name, NameProps, NameConcern } from './name';
-import { Telephone, TelephoneConcern, TelephoneProps } from './tel';
 import { DiveLevel, DiveLevelConcern, DiveLevelProps } from './dive-level';
 import { DatePicker, DatePickerProps, DatePickerConcern } from './date-picker';
 import { Hotel, HotelConcern, HotelProps } from './hotel';
@@ -11,7 +10,7 @@ import { Field, FielderConcern, Fielder } from './field';
 export type FormConcern =
     | NameConcern
     | { about: 'email', email: FielderConcern }
-    | TelephoneConcern
+    | { about: 'telephone', telephone: FielderConcern }
     | DiveLevelConcern
     | DatePickerConcern
     | HotelConcern
@@ -21,8 +20,7 @@ export type FormConcern =
 export interface FormProps {
     readonly name: string;
     readonly email: Field;
-    readonly telephone: string;
-    readonly isTelValid: boolean;
+    readonly telephone: Field;
     readonly level: string;
     readonly pickedLevels: string[];
     readonly option: string[] | null;
@@ -40,16 +38,10 @@ export class Form extends React.Component<FormProps> {
     render() {
         const {
             name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
-            isCalendarToShow, level, hotel, message, isTelValid, option,
+            isCalendarToShow, level, hotel, message, option,
         } = this.props;
         const nameProps: NameProps = {
             name,
-            when: concern => {
-                this.props.when(concern);
-            }
-        };
-        const telephoneProps: TelephoneProps = {
-            telephone, isTelValid,
             when: concern => {
                 this.props.when(concern);
             }
@@ -80,7 +72,7 @@ export class Form extends React.Component<FormProps> {
                 this.props.when(concern);
             }
         };
-        const isValid = email.isValid && isTelValid;
+        const isValid = email.isValid && telephone.isValid;
         return <div className="dive-request-form">
             <form>
                 <div><Name {...nameProps} /></div>
@@ -95,7 +87,17 @@ export class Form extends React.Component<FormProps> {
                         </div>
                     </label>
                 </div>
-                <div><Telephone {...telephoneProps} /></div>
+                <div>
+                    <label>
+                        <div>Номер телефона</div>
+                        <div>
+                            <Fielder
+                                field={telephone}
+                                when={concern => this.props.when({ about: 'telephone', telephone: concern })}
+                            />
+                        </div>
+                    </label>
+                </div>
                 <div><DiveLevel {...diveLevelProps} /></div>
                 <div className="date-picker"><DatePicker {...datePickerProps} /></div>
                 <div><Hotel {...hotelProps} /></div>
@@ -106,7 +108,7 @@ export class Form extends React.Component<FormProps> {
                 const newDiveRequest: DiveRequest = {
                     name,
                     email: email.value,
-                    telephone,
+                    telephone: telephone.value,
                     diveLevel: pickedLevels,
                     arrivalDate: pickedDate,
                     hotel,
