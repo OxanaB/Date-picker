@@ -25,6 +25,19 @@
   color: black;
   text-decoration: none;
 }
+.dive-request-form .options {
+  font-style: italic;
+  font-size: 0.8em;
+  padding: 5px;
+}
+.dive-request-form .tags {
+  font-style: italic;
+  font-size: 0.8em;
+}
+.dive-request-form .tags a {
+  padding: 10px;
+  display: inline-block;
+}
 .dive-request-form .date-picker svg {
   margin-left: 5px;
 }

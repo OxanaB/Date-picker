@@ -15,12 +15,18 @@ export interface LevelPickedConcern {
     level: string;
 }
 
+export interface HideLevelOptionsConcern {
+    about: 'hide-options';
+    isOptionToShow: boolean;
+}
+
 export interface PickedLevelToDeleteConcern {
     about: 'picked-level-to-delete';
     level: string;
 }
 
-export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern | PickedLevelToDeleteConcern | NewTagConcern;
+export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern
+    | PickedLevelToDeleteConcern | NewTagConcern | HideLevelOptionsConcern;
 
 export interface DiveLevelProps {
     level: string;
@@ -45,17 +51,22 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                         })
                     }}
                     onKeyDown={({ keyCode }) => {
-                        if (keyCode === 13) { 
+                        if (keyCode === 13) {
                             this.props.when({
                                 about: 'new-tag-added',
-                                level 
+                                level
                             })
+                        } if (keyCode === 27) {
+                            this.props.when({
+                                about: 'hide-options',
+                                isOptionToShow
+                            });
                         }
                     }} /></div>
                 {
                     option !== null && isOptionToShow
                         ? option.map(machedOption => {
-                            return <div key={machedOption}>
+                            return <div className="options" key={machedOption}>
                                 <a href="#" onClick={e => {
                                     e.preventDefault();
                                     this.props.when({
@@ -68,7 +79,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                         : null
                 }
                 {pickedLevels.map(level => {
-                    return <div key={level}>
+                    return <div className="tags" key={level}>
                         {level}
                         <a href="#" onClick={e => {
                             e.preventDefault();
@@ -76,7 +87,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                                 about: 'picked-level-to-delete',
                                 level: level
                             })
-                        }}>x</a></div>
+                        }}><sup>x</sup></a></div>
                 })}
             </label>
         </>

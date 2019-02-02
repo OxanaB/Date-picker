@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to, broke } from './utils';
+import { matchOptions, to, broke, intersection } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 
 export class App extends React.Component<{}, FormProps> {
@@ -42,12 +42,33 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'level-input': {
-                const matchedOptions = matchOptions(diveLevelOptions, concern.level);
-                this.setState({
-                    level: concern.level,
-                    option: matchedOptions,
-                    isOptionToShow: true
-                });
+                const { pickedLevels } = this.state;
+                if (pickedLevels.length === 0) {
+                    const matchedOptions = matchOptions(diveLevelOptions, concern.level);
+                    this.setState({
+                        level: concern.level,
+                        option: matchedOptions,
+                        isOptionToShow: true
+                    });                    
+                } else {
+                    // const comparedLevels = intersection(diveLevelOptions, pickedLevels);
+                    // const newDiveLevelOptions: string[] = [];
+                    // if (comparedLevels.length > 0) {
+                    //     for (let i = 0; i < comparedLevels.length; i++) {
+                    //         const toDelete = comparedLevels[i];
+                    //         const newDiveLevelOptions = diveLevelOptions.filter(
+                    //             oldOptions => oldOptions !== toDelete
+                    //         );
+                    //         return newDiveLevelOptions;
+                    //     }
+                    // };
+                    // const newMatchedOptions = matchOptions(newDiveLevelOptions, concern.level);
+                    // this.setState({
+                    //     level: concern.level,
+                    //     option: newMatchedOptions,
+                    //     isOptionToShow: true
+                    // });
+                }
                 break;
             };
             case 'level-picked': {
@@ -58,12 +79,17 @@ export class App extends React.Component<{}, FormProps> {
                     pickedLevels: newPickedLevels,
                     isOptionToShow: false,
                     level: ''
-                });
+                })
                 break;
             };
+            case 'hide-options': {
+                this.setState({
+                    isOptionToShow: false
+                })
+            }
             case 'picked-level-to-delete': {
                 const { pickedLevels } = this.state;
-                const { level } = concern;
+                const { level } = this.state;
                 const newPickedLevels = pickedLevels.filter(oldLevel => oldLevel !== level);
                 this.setState({
                     pickedLevels: newPickedLevels,

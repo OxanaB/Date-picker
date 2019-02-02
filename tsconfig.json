@@ -5,6 +5,6 @@
         "strict": true,
         "jsx": "react",
         "sourceMap": true,
-        "target": "es2018"
+        "target": "esnext"
     }
 }

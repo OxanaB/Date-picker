@@ -1,4 +1,5 @@
 import { testing } from "./testing";
+import { string } from "prop-types";
 
 export function getRandomElement<T>(array: T[]): T {
     const n = Math.random() * array.length;
@@ -103,85 +104,13 @@ export function matchOptions(options: string[], text: string): string[] {
 
 export function to<T>(value: T): T { return value; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const x = { a: 1 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export function intersection(original: string[], compare: string[]): string[] {
+    const matched: string[] = [];
+    original.forEach(element => {
+        if (compare.includes(element)) {
+            matched.push(element);
+        };
+    });
+    return matched;
+
+}
