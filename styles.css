@@ -16,7 +16,10 @@
 .dive-request-form button {
   position: absolute;
   right: 0;
-  bottom: -40;
+  bottom: -55px;
+  padding: 10;
+  font-size: 1em;
+  border-radius: 5px;
 }
 .dive-request-form .invalid {
   outline-color: red;
@@ -35,17 +38,24 @@
 .dive-request-form .tags {
   font-style: italic;
   font-size: 0.8em;
+  display: inline;
+  margin-left: 5px;
 }
 .dive-request-form .tags a {
+  font-size: 1.2em;
   font-style: normal;
   padding: 10px;
   display: inline-block;
 }
-.dive-request-form .date-picker .wrapper-input-icon {
+.dive-request-form .tags a:hover,
+.dive-request-form .tags a:active {
+  font-weight: bold;
+}
+.dive-request-form .wrapper-input-icon {
   display: flex;
   align-items: center;
 }
-.dive-request-form .date-picker .wrapper-input-icon svg {
+.dive-request-form .wrapper-input-icon svg {
   margin-left: 5px;
 }
 .dive-request-form .date-picker .calendar {

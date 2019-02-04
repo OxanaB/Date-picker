@@ -8,6 +8,7 @@
     position: relative;
     width: 380px;
     margin: 15px;
+    background-color: #ffffffcc;
 
     input, textarea {
         min-width: 350px;
@@ -16,7 +17,10 @@
     button {
         position: absolute;
         right: 0;
-        bottom: -40;
+        bottom: -55px;
+        padding: 10;
+        font-size: 1em;
+        border-radius: 5px;
     }
     .invalid {
         outline-color: red;
@@ -35,23 +39,31 @@
     .tags {
         font-style: italic;
         font-size: 0.8em;
+        display: inline;
+        margin-left: 5px;
         a {
+            font-size: 1.2em;
             font-style: normal;
             padding: 10px;
             display: inline-block;
-        }
-    }
-    .date-picker {
-        
-        .wrapper-input-icon {
-            display: flex;
-            align-items: center;
-
-            svg {
-            margin-left: 5px;
+            &:hover, &:active {
+                font-weight: bold;
             }
         }
-            
+    }
+    
+    .wrapper-input-icon {
+        display: flex;
+        align-items: center;
+
+        svg {
+        margin-left: 5px;
+        }
+    }
+       
+    .date-picker {
+        
+         
         .calendar {
             width: 305px;
             max-height: 360px;
