@@ -104,7 +104,7 @@ export function matchOptions(options: string[], text: string): string[] {
 
 export function to<T>(value: T): T { return value; }
 
-export function intersection(original: string[], compare: string[]): string[] {
+export function intersect(original: string[], compare: string[]): string[] {
     const matched: string[] = [];
     original.forEach(element => {
         if (compare.includes(element)) {
@@ -113,4 +113,8 @@ export function intersection(original: string[], compare: string[]): string[] {
     });
     return matched;
 
+}
+
+export function minus(left: string[], right: string[]): string[] {
+    return left.filter(left => !right.includes(left));
 }

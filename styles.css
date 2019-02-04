@@ -29,12 +29,15 @@
   font-style: italic;
   font-size: 0.8em;
   padding: 5px;
+  max-height: 200px;
+  overflow-y: auto;
 }
 .dive-request-form .tags {
   font-style: italic;
   font-size: 0.8em;
 }
 .dive-request-form .tags a {
+  font-style: normal;
   padding: 10px;
   display: inline-block;
 }

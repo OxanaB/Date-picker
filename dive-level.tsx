@@ -65,8 +65,8 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                     }} /></div>
                 {
                     option !== null && isOptionToShow
-                        ? option.map(machedOption => {
-                            return <div className="options" key={machedOption}>
+                        ? <div className="options">{option.map(machedOption => {
+                            return <div key={machedOption}>
                                 <a href="#" onClick={e => {
                                     e.preventDefault();
                                     this.props.when({
@@ -75,7 +75,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                                     });
                                 }}>{machedOption}</a></div>
 
-                        })
+                        })}</div>
                         : null
                 }
                 {pickedLevels.map(level => {
@@ -85,7 +85,7 @@ export class DiveLevel extends React.Component<DiveLevelProps> {
                             e.preventDefault();
                             this.props.when({
                                 about: 'picked-level-to-delete',
-                                level: level
+                                level
                             })
                         }}><sup>x</sup></a></div>
                 })}

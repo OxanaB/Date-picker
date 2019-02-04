@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to, broke, intersection } from './utils';
+import { matchOptions, to, broke, intersect, minus } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 
 export class App extends React.Component<{}, FormProps> {
@@ -51,23 +51,13 @@ export class App extends React.Component<{}, FormProps> {
                         isOptionToShow: true
                     });                    
                 } else {
-                    // const comparedLevels = intersection(diveLevelOptions, pickedLevels);
-                    // const newDiveLevelOptions: string[] = [];
-                    // if (comparedLevels.length > 0) {
-                    //     for (let i = 0; i < comparedLevels.length; i++) {
-                    //         const toDelete = comparedLevels[i];
-                    //         const newDiveLevelOptions = diveLevelOptions.filter(
-                    //             oldOptions => oldOptions !== toDelete
-                    //         );
-                    //         return newDiveLevelOptions;
-                    //     }
-                    // };
-                    // const newMatchedOptions = matchOptions(newDiveLevelOptions, concern.level);
-                    // this.setState({
-                    //     level: concern.level,
-                    //     option: newMatchedOptions,
-                    //     isOptionToShow: true
-                    // });
+                    const noPicked = minus(diveLevelOptions, pickedLevels);
+                    const matchedOptions = matchOptions(noPicked, concern.level);
+                    this.setState({
+                        level: concern.level,
+                        option: matchedOptions,
+                        isOptionToShow: true
+                    });
                 }
                 break;
             };
@@ -86,13 +76,15 @@ export class App extends React.Component<{}, FormProps> {
                 this.setState({
                     isOptionToShow: false
                 })
+                break;
             }
             case 'picked-level-to-delete': {
+                const { level } = concern;
                 const { pickedLevels } = this.state;
-                const { level } = this.state;
                 const newPickedLevels = pickedLevels.filter(oldLevel => oldLevel !== level);
                 this.setState({
                     pickedLevels: newPickedLevels,
+                    level: ''
                 });
                 break;
             };
