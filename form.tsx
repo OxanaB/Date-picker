@@ -26,6 +26,8 @@ export interface FormProps {
     readonly option: string[] | null;
     readonly isOptionToShow: boolean;
     readonly pickedDate: Date | null;
+    readonly month: string;
+    readonly year: string;
     readonly anchorDate: Date;
     readonly isCalendarToShow: boolean;
     readonly hotel: string;
@@ -38,7 +40,7 @@ export class Form extends React.Component<FormProps> {
     render() {
         const {
             name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
-            isCalendarToShow, level, hotel, message, option,
+            isCalendarToShow, level, hotel, message, option, month, year,
         } = this.props;
         const nameProps: NameProps = {
             name,
@@ -55,6 +57,8 @@ export class Form extends React.Component<FormProps> {
         const datePickerProps: DatePickerProps = {
             pickedDate,
             anchorDate,
+            month,
+            year,
             isCalendarToShow,
             when: concern => {
                 this.props.when(concern);

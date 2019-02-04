@@ -2,8 +2,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to, broke, intersect, minus } from './utils';
+import { matchOptions, to, broke, intersect, minus, monthToString, monthFromStringToNumber } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
+import { monthEn, monthRU } from './month-viewer';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -49,7 +50,7 @@ export class App extends React.Component<{}, FormProps> {
                         level: concern.level,
                         option: matchedOptions,
                         isOptionToShow: true
-                    });                    
+                    });
                 } else {
                     const noPicked = minus(diveLevelOptions, pickedLevels);
                     const matchedOptions = matchOptions(noPicked, concern.level);
@@ -110,20 +111,51 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'show-next-month': {
+                const { month, year } = this.state;
                 const date = this.state.anchorDate;
-                this.setState({ anchorDate: new Date(date.getFullYear(), date.getMonth() + 1) });
+                const newAnchorDate = new Date(date.getFullYear(), date.getMonth() + 1);
+                this.setState({
+                    anchorDate: newAnchorDate
+                });
                 break;
             };
             case 'show-previous-month': {
                 const date = this.state.anchorDate;
-                this.setState({ anchorDate: new Date(date.getFullYear(), date.getMonth() - 1) });
+                const newAnchorDate = new Date(date.getFullYear(), date.getMonth() + 1);
+                this.setState({
+                    anchorDate: newAnchorDate
+                });
                 break;
             };
             case 'date-is-picked': {
                 this.setState({
                     pickedDate: concern.pickedDate,
                     isCalendarToShow: false
-                })
+                });
+                break;
+            };
+            case 'month-choise': {
+                const { month } = concern;
+                const { year } = this.state;
+                const choosenMonth = monthFromStringToNumber(month, monthRU);
+                const yearNumber = parseInt(year);
+                const newAnchorDate = new Date(yearNumber, choosenMonth);
+                const monthText = monthToString(monthRU, choosenMonth);
+                this.setState({
+                    anchorDate: newAnchorDate,
+                    month: monthText
+                });
+                break;
+            };
+            case 'year-choise': {
+                const { year } = concern;
+                const choosenYear = parseInt(year);
+                const newAnchorDate = new Date(choosenYear);
+                const yearText = choosenYear.toString();
+                this.setState({
+                    anchorDate: newAnchorDate,
+                    year: yearText
+                });
                 break;
             }
             default: return broke(concern);
@@ -140,6 +172,8 @@ export class App extends React.Component<{}, FormProps> {
         pickedDate: null,
         pickedLevels: [],
         anchorDate: new Date(),
+        month: new Date().getMonth().toString(),
+        year: new Date().getFullYear().toString(),
         isCalendarToShow: false,
         hotel: '',
         message: '',

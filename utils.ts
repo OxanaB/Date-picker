@@ -118,3 +118,13 @@ export function intersect(original: string[], compare: string[]): string[] {
 export function minus(left: string[], right: string[]): string[] {
     return left.filter(left => !right.includes(left));
 }
+
+export function monthToString(month: string[], index: number): string {
+    const choosenMonth = month[index];
+    return choosenMonth;
+}
+export function monthFromStringToNumber (value: string, array: string[]): number {
+    const result = array.indexOf(value);
+    return result;
+}
+

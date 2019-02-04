@@ -2,25 +2,29 @@ import * as React from 'react';
 import { Grid, PickedDateConcern } from './grid';
 import { PreviousMonthButton, PreviousMonthConcern } from './previous-month-button';
 import { NextMonthConcern, NextMonthButton } from './next-month-button';
-import { MonthViewer } from './month-viewer';
+import { MonthViewer, MonthViewerConcern } from './month-viewer';
 
-export type CalendarConcerns = PreviousMonthConcern | NextMonthConcern | PickedDateConcern;
+export type CalendarConcerns = PreviousMonthConcern | NextMonthConcern | PickedDateConcern | MonthViewerConcern;
 
 export interface CalendarProps {
     date: Date;
+    month: string;
+    year: string;
     when: (concern: CalendarConcerns) => void;
 }
 
 export class Calendar extends React.Component<CalendarProps> {
 
     render() {
-        const { date } = this.props;
+        const { date, month, year } = this.props;
         return <div className="calendar">
             <div className="nav">
                 <PreviousMonthButton when={concern => {
                     this.props.when(concern);
                     }} />
-                <MonthViewer date={date} />
+                <MonthViewer date={date} month={month} year={year} when={concern => {
+                    this.props.when(concern);
+                    }}/>
                 <NextMonthButton when={concern => {
                     this.props.when(concern);
                     }} />

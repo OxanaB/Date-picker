@@ -7,15 +7,19 @@ export type DatePickerConcern = CalendarConcerns | DateInputConcern;
 export interface DatePickerProps {
     anchorDate: Date;
     pickedDate: Date | null;
+    month: string;
+    year: string;
     isCalendarToShow: boolean;
     when: (concern: DatePickerConcern) => void;
 }
 
 export class DatePicker extends React.Component<DatePickerProps> {
     render() {
-        const { anchorDate, pickedDate } = this.props;
+        const { anchorDate, pickedDate, month, year } = this.props;
         const calendarProps: CalendarProps = {
             date: anchorDate,
+            month: month,
+            year: year,
             when: concern => {
                 this.props.when(concern);
             }
