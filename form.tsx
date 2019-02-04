@@ -39,7 +39,7 @@ export interface FormProps {
 export class Form extends React.Component<FormProps> {
     render() {
         const {
-            name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
+            name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels, 
             isCalendarToShow, level, hotel, message, option, month, year,
         } = this.props;
         const nameProps: NameProps = {

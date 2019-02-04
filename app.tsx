@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to, broke, intersect, minus, monthToString, monthFromStringToNumber } from './utils';
+import { matchOptions, to, broke, minus, monthToString, monthFromStringToNumber } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 import { monthEn, monthRU } from './month-viewer';
 

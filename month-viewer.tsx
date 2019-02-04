@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { monthToString } from './utils';
 
 export type MonthViewerConcern = MonthChoiseConcern | YearChoiseConcern | PreviousMonthConcern | NextMonthConcern;
 
@@ -34,11 +33,11 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
         return <div className="month-viewer">
             <a className="previous-month" onClick={e => {
                 e.preventDefault;
-                this.props.when({ 
+                this.props.when({
                     about: 'show-previous-month',
                     month,
                     year
-                 })
+                })
             }}></a>
             <select name="month" id="month" value={month} onChange={(e) =>
                 this.props.when({
@@ -71,11 +70,11 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
             </select>
             <a className="next-month" onClick={e => {
                 e.preventDefault;
-                this.props.when({ 
+                this.props.when({
                     about: 'show-next-month',
                     month,
                     year
-                 })
+                })
             }}></a>
         </div>
     }
@@ -86,4 +85,3 @@ export const monthEn = [
     'October', 'November', 'December']
 export const monthRU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май',
     'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-

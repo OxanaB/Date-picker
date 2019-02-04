@@ -8,7 +8,7 @@ export interface DatePickerProps {
     anchorDate: Date;
     pickedDate: Date | null;
     month: string;
-    year: string;
+    year: string;    
     isCalendarToShow: boolean;
     when: (concern: DatePickerConcern) => void;
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { getGridsStartAndFinishPoints, makeGrid } from './grid-maker';
+import { string } from 'prop-types';
 
 
 export interface GridProps {
@@ -17,9 +18,8 @@ export class Grid extends React.Component<GridProps> {
         const { date } = this.props;
         const { firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth } = getGridsStartAndFinishPoints(date);
         const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth);
-        const dayEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-        const dayRu = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
-
+        const dayEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const dayRu = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
         return <>
             <thead>
                 <tr>
