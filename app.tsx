@@ -111,26 +111,22 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'show-next-month': {
-                const { month, year } = this.state;
                 const date = this.state.anchorDate;
                 const newAnchorDate = new Date(date.getFullYear(), date.getMonth() + 1);
+                const newMonth = monthToString(monthRU, newAnchorDate.getMonth());
                 this.setState({
-                    anchorDate: newAnchorDate
+                    anchorDate: newAnchorDate,
+                    month: newMonth
                 });
                 break;
             };
             case 'show-previous-month': {
-                const date = this.state.anchorDate;
-                const newAnchorDate = new Date(date.getFullYear(), date.getMonth() + 1);
+                const { anchorDate } = this.state;
+                const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1);
+                const nextMonth = monthToString(monthRU, newAnchorDate.getMonth())
                 this.setState({
-                    anchorDate: newAnchorDate
-                });
-                break;
-            };
-            case 'date-is-picked': {
-                this.setState({
-                    pickedDate: concern.pickedDate,
-                    isCalendarToShow: false
+                    anchorDate: newAnchorDate,
+                    month: nextMonth
                 });
                 break;
             };
@@ -157,7 +153,14 @@ export class App extends React.Component<{}, FormProps> {
                     year: yearText
                 });
                 break;
-            }
+            };            
+            case 'date-is-picked': {
+                this.setState({
+                    pickedDate: concern.pickedDate,
+                    isCalendarToShow: false
+                });
+                break;
+            };
             default: return broke(concern);
         }
     }
@@ -172,7 +175,7 @@ export class App extends React.Component<{}, FormProps> {
         pickedDate: null,
         pickedLevels: [],
         anchorDate: new Date(),
-        month: new Date().getMonth().toString(),
+        month: monthToString(monthRU, new Date().getMonth()),
         year: new Date().getFullYear().toString(),
         isCalendarToShow: false,
         hotel: '',

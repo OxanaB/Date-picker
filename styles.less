@@ -63,38 +63,40 @@
         z-index: 1;
         padding: 0px 5px 5px 0px;
         background-color: #fff;
-        .nav {
-            display: flex;   
-        }
+        
         .month-viewer {
-            width: 176px;
-            text-transform: uppercase;
-            height: 40px;
-            font-weight: bold;
+            width: 290px;
+            display: flex;
             background-color: lightgray;
-            padding-top: 6px;
-            
-        }
-        .button() {
-            display: block;
-            width: 50px;
-            height: 40px;
-            margin: 0px 5px;
-            border: 1px solid grey;
-            background-position: 50% 50%;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+            padding: 10px;
+        
+            .button() {
+                display: block;                
+                height: 37px;
+                width: 40px;
+                margin: 0px 5px;
+                border: 1px solid #a9a9a9;;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-color: #fff;
+            }
 
-        .previous-month {
-            .button();
-            background-image: url(/arrow_left.png);
-        }
+            .previous-month {
+                .button();
+                background-image: url(/arrow_left.png);
+            }
 
-        .next-month {
-            .button();
-            background-image: url(/arrow_right.png);
+            .next-month {
+                .button();
+                background-image: url(/arrow_right.png);
+            }
+            select {
+                font-size: 18px;
+                padding: 5px;
+            }
         }
+        
         td {
             border: 1px solid lightgray;
             text-align: center;

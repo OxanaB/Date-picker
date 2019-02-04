@@ -25,7 +25,8 @@ export function makeGrid(firstDayOnTheGrid: Date, lastDayOnTheGrid: Date): Date[
             const dateDelta = weekIndex * 7 + dayIndex;
             const date = new Date(gridFirstYear, gridFirstMonth, gridFirstDate + dateDelta);
             week.push(date);
-            if (date.getTime() === lastDayOnTheGrid.getTime()) {
+            // check double if
+            if (lastDayOnTheGrid.getDate() === 31 || date.getTime() === lastDayOnTheGrid.getTime()) {
                 result.push(week);
                 return result;
             }

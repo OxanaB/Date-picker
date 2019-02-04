@@ -60,38 +60,39 @@
   padding: 0px 5px 5px 0px;
   background-color: #fff;
 }
-.dive-request-form .calendar .nav {
-  display: flex;
-}
 .dive-request-form .calendar .month-viewer {
-  width: 176px;
-  text-transform: uppercase;
-  height: 40px;
-  font-weight: bold;
+  width: 290px;
+  display: flex;
   background-color: lightgray;
-  padding-top: 6px;
+  padding: 10px;
 }
-.dive-request-form .calendar .previous-month {
+.dive-request-form .calendar .month-viewer .previous-month {
   display: block;
-  width: 50px;
-  height: 40px;
+  height: 37px;
+  width: 40px;
   margin: 0px 5px;
-  border: 1px solid grey;
+  border: 1px solid #a9a9a9;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #fff;
   background-image: url(/arrow_left.png);
 }
-.dive-request-form .calendar .next-month {
+.dive-request-form .calendar .month-viewer .next-month {
   display: block;
-  width: 50px;
-  height: 40px;
+  height: 37px;
+  width: 40px;
   margin: 0px 5px;
-  border: 1px solid grey;
+  border: 1px solid #a9a9a9;
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;
+  background-color: #fff;
   background-image: url(/arrow_right.png);
+}
+.dive-request-form .calendar .month-viewer select {
+  font-size: 18px;
+  padding: 5px;
 }
 .dive-request-form .calendar td {
   border: 1px solid lightgray;
