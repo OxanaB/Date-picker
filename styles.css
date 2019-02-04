@@ -49,16 +49,18 @@
   margin-left: 5px;
 }
 .dive-request-form .date-picker .calendar {
-  width: 295px;
-  height: 360px;
+  width: 305px;
+  max-height: 360px;
   position: fixed;
   top: 245;
   left: 100;
   display: flex;
   flex-direction: column;
+  align-items: center;
   z-index: 1;
-  padding: 0px 5px 5px 0px;
+  padding: 5px;
   background-color: #fff;
+  border: 1px solid lightgray;
 }
 .dive-request-form .date-picker .calendar .month-viewer {
   width: 290px;
@@ -69,7 +71,7 @@
 .dive-request-form .date-picker .calendar .month-viewer .previous-month {
   display: block;
   height: 37px;
-  width: 40px;
+  width: 55px;
   margin: 0px 5px;
   border: 1px solid #a9a9a9;
   background-position: 50% 50%;
@@ -81,7 +83,7 @@
 .dive-request-form .date-picker .calendar .month-viewer .next-month {
   display: block;
   height: 37px;
-  width: 40px;
+  width: 55px;
   margin: 0px 5px;
   border: 1px solid #a9a9a9;
   background-position: 50% 50%;
