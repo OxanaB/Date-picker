@@ -5,11 +5,11 @@ export function getGridsStartAndFinishPoints(date: Date) {
 
     const firstDayOfMonth = new Date(year, month, 1);
     const deltaFirst = firstDayOfMonth.getDay();
-    const firstDayOnTheGrid = new Date(year, month, 1 - deltaFirst);
+    const firstDayOnTheGrid = new Date(year, month, 2 - deltaFirst);
 
     const lastDayOfMonth = new Date(year, month + 1, 0);
     const deltaLast = 7 - lastDayOfMonth.getDay();
-    const lastDayOnTheGrid = new Date(year, month + 1, -1 + deltaLast);
+    const lastDayOnTheGrid = new Date(year, month + 1, 0 + deltaLast);
     return { firstDayOnTheGrid, lastDayOnTheGrid };
 }
 

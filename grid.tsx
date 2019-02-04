@@ -17,28 +17,45 @@ export class Grid extends React.Component<GridProps> {
         const { date } = this.props;
         const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(date);
         const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid);
+        const dayEn = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        const dayRu = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вск']
 
-        return <tbody>
+        return <>
+            <thead>
+                <tr>
+                    {window.navigator.language === "en-US" ?
+                        dayEn.map((day) => {
+                            return <th key={day.toString()}> {day}
+                            </th>;
+                        })
+                        : dayRu.map((day) => {
+                            return <th key={day.toString()}> {day}
+                            </th>;
+                        })
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    gridCurrentMonth.map((week, weekIndex) => {
+                        return <tr key={weekIndex}>{
+                            week.map(date => {
+                                return <td key={date.toDateString()}>
+                                    <a href="" onClick={e => {
+                                        e.preventDefault();
+                                        this.props.when({ about: 'date-is-picked', pickedDate: date });
+                                    }}>
+                                        {date.getDate()}
+                                    </a>
+                                </td>;
+                            })}
+                        </tr>;
+                    })
+                }
 
-            {
-                gridCurrentMonth.map((week, weekIndex) => {
-                    return <tr key={weekIndex}>{
-                        week.map(date => {
-                            return <td key={date.toDateString()}>
-                                <a href="" onClick={e => {
-                                    e.preventDefault();
-                                    this.props.when({ about: 'date-is-picked', pickedDate: date });
-                                }}>
-                                {date.getDate()}
-                                </a>
-                            </td>;
-                        })}
-                    </tr>;
-                })
-            }
 
-
-        </tbody>
+            </tbody>
+        </>
     }
 }
 

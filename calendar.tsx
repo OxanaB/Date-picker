@@ -3,7 +3,6 @@ import { Grid, PickedDateConcern } from './grid';
 import { PreviousMonthButton, PreviousMonthConcern } from './previous-month-button';
 import { NextMonthConcern, NextMonthButton } from './next-month-button';
 import { MonthViewer } from './month-viewer';
-import { GridCapture } from './grid-capture';
 
 export type CalendarConcerns = PreviousMonthConcern | NextMonthConcern | PickedDateConcern;
 
@@ -27,7 +26,6 @@ export class Calendar extends React.Component<CalendarProps> {
                     }} />
             </div>
             <table className="grid">
-                <GridCapture />
                 <Grid date={date} when={concern => {
                     this.props.when(concern);
                 }} />
