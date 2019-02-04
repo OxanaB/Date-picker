@@ -15,10 +15,10 @@ export interface PickedDateConcern {
 export class Grid extends React.Component<GridProps> {
     render() {
         const { date } = this.props;
-        const { firstDayOnTheGrid, lastDayOnTheGrid } = getGridsStartAndFinishPoints(date);
-        const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid);
-        const dayEn = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        const dayRu = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вск']
+        const { firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth } = getGridsStartAndFinishPoints(date);
+        const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth);
+        const dayEn = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+        const dayRu = ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
 
         return <>
             <thead>

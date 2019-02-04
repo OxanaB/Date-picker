@@ -111,22 +111,26 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'show-next-month': {
-                const date = this.state.anchorDate;
-                const newAnchorDate = new Date(date.getFullYear(), date.getMonth() + 1);
+                const { anchorDate } = this.state;
+                const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() + 1);
                 const newMonth = monthToString(monthRU, newAnchorDate.getMonth());
+                const newYear = newAnchorDate.getFullYear().toString();
                 this.setState({
                     anchorDate: newAnchorDate,
-                    month: newMonth
+                    month: newMonth,
+                    year: newYear
                 });
                 break;
             };
             case 'show-previous-month': {
                 const { anchorDate } = this.state;
                 const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1);
-                const nextMonth = monthToString(monthRU, newAnchorDate.getMonth())
+                const newMonth = monthToString(monthRU, newAnchorDate.getMonth());
+                const newYear = newAnchorDate.getFullYear().toString();
                 this.setState({
                     anchorDate: newAnchorDate,
-                    month: nextMonth
+                    month: newMonth,
+                    year: newYear
                 });
                 break;
             };

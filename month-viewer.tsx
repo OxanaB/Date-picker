@@ -20,10 +20,12 @@ export interface YearChoiseConcern {
 export interface PreviousMonthConcern {
     about: 'show-previous-month';
     month: string;
+    year: string;
 }
 export interface NextMonthConcern {
     about: 'show-next-month';
     month: string;
+    year: string;
 }
 
 export class MonthViewer extends React.Component<MonthViewerProps> {
@@ -34,13 +36,14 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
                 e.preventDefault;
                 this.props.when({ 
                     about: 'show-previous-month',
-                    month
+                    month,
+                    year
                  })
             }}></a>
-            <select name="month" id="month" value={month} onChange={() =>
+            <select name="month" id="month" value={month} onChange={(e) =>
                 this.props.when({
                     about: 'month-choise',
-                    month
+                    month: e.currentTarget.value
                 })
             }>
                 {
@@ -49,21 +52,29 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
                     })
                 }
             </select>
-            <select name="year" id="year" defaultValue={year} onChange={(e) =>
+            <select name="year" id="year" value={year} onChange={(e) =>
                 this.props.when({
                     about: 'year-choise',
                     year: e.currentTarget.value
                 })
             }>
+                <option id="2016">2016</option>
+                <option id="2017">2017</option>
+                <option id="2018">2018</option>
                 <option id="2019">2019</option>
                 <option id="2020">2020</option>
                 <option id="2021">2021</option>
+                <option id="2022">2022</option>
+                <option id="2023">2023</option>
+                <option id="2024">2024</option>
+                <option id="2025">2025</option>
             </select>
             <a className="next-month" onClick={e => {
                 e.preventDefault;
                 this.props.when({ 
                     about: 'show-next-month',
-                    month
+                    month,
+                    year
                  })
             }}></a>
         </div>

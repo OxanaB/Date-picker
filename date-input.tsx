@@ -23,7 +23,7 @@ export class DateInput extends React.Component<DateInputProps, State> {
         return <>
             <label>
                 <div>Дата приезда</div>
-                <div>
+                <div className="wrapper-input-icon">
                     <input type="text"
                         value={text}
                         onFocus={() => {

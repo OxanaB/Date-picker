@@ -41,18 +41,18 @@
   padding: 10px;
   display: inline-block;
 }
-.dive-request-form .date-picker svg {
-  margin-left: 5px;
-}
-.dive-request-form .date-picker div:nth-child(2) {
+.dive-request-form .date-picker .wrapper-input-icon {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
-.dive-request-form .calendar {
-  max-width: fit-content;
+.dive-request-form .date-picker .wrapper-input-icon svg {
+  margin-left: 5px;
+}
+.dive-request-form .date-picker .calendar {
+  width: 295px;
+  height: 360px;
   position: fixed;
-  bottom: 100;
+  top: 245;
   left: 100;
   display: flex;
   flex-direction: column;
@@ -60,13 +60,13 @@
   padding: 0px 5px 5px 0px;
   background-color: #fff;
 }
-.dive-request-form .calendar .month-viewer {
+.dive-request-form .date-picker .calendar .month-viewer {
   width: 290px;
   display: flex;
   background-color: lightgray;
   padding: 10px;
 }
-.dive-request-form .calendar .month-viewer .previous-month {
+.dive-request-form .date-picker .calendar .month-viewer .previous-month {
   display: block;
   height: 37px;
   width: 40px;
@@ -78,7 +78,7 @@
   background-color: #fff;
   background-image: url(/arrow_left.png);
 }
-.dive-request-form .calendar .month-viewer .next-month {
+.dive-request-form .date-picker .calendar .month-viewer .next-month {
   display: block;
   height: 37px;
   width: 40px;
@@ -90,23 +90,23 @@
   background-color: #fff;
   background-image: url(/arrow_right.png);
 }
-.dive-request-form .calendar .month-viewer select {
+.dive-request-form .date-picker .calendar .month-viewer select {
   font-size: 18px;
   padding: 5px;
 }
-.dive-request-form .calendar td {
+.dive-request-form .date-picker .calendar td {
   border: 1px solid lightgray;
   text-align: center;
   overflow: hidden;
 }
-.dive-request-form .calendar a {
+.dive-request-form .date-picker .calendar a {
   display: block;
   padding: 10px;
 }
-.dive-request-form .calendar a:hover,
-.dive-request-form .calendar a:focus {
+.dive-request-form .date-picker .calendar a:hover,
+.dive-request-form .date-picker .calendar a:focus {
   text-decoration: underline;
 }
-.dive-request-form .calendar a:active {
+.dive-request-form .date-picker .calendar a:active {
   background-color: lightgray;
 }
