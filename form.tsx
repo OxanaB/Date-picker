@@ -6,6 +6,7 @@ import { Hotel, HotelConcern, HotelProps } from './hotel';
 import { Message, MessageConcern, MessageProps } from './message';
 import { DiveRequest } from './dive-requests';
 import { Field, FielderConcern, Fielder } from './field';
+import { localizer } from './language';
 
 export type FormConcern =
     | NameConcern
@@ -18,9 +19,10 @@ export type FormConcern =
 
 
 export interface FormProps {
+    readonly language: string;
     readonly name: string;
     readonly email: Field;
-    readonly telephone: Field;
+    readonly phone: Field;
     readonly level: string;
     readonly pickedLevels: string[];
     readonly option: string[] | null;
@@ -39,17 +41,17 @@ export interface FormProps {
 export class Form extends React.Component<FormProps> {
     render() {
         const {
-            name, email, telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
-            isCalendarToShow, level, hotel, message, option, month, year,
+            name, email, phone: telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
+            isCalendarToShow, level, hotel, message, option, month, year, language
         } = this.props;
         const nameProps: NameProps = {
-            name,
+            name, language,
             when: concern => {
                 this.props.when(concern);
             }
         };
         const diveLevelProps: DiveLevelProps = {
-            level, option, isOptionToShow, pickedLevels,
+            level, option, isOptionToShow, pickedLevels, language,
             when: concern => {
                 this.props.when(concern);
             }
@@ -59,31 +61,31 @@ export class Form extends React.Component<FormProps> {
             anchorDate,
             month,
             year,
+            language,
             isCalendarToShow,
             when: concern => {
                 this.props.when(concern);
             }
         };
         const hotelProps: HotelProps = {
-            hotel,
+            hotel, language,
             when: concern => {
                 this.props.when(concern);
             }
         };
         const messageProps: MessageProps = {
-            message,
+            message, language,
             when: concern => {
                 this.props.when(concern);
             }
         };
         const isValid = email.isValid && telephone.isValid;
-
         return <div className="dive-request-form">
             <form>
                 <div><Name {...nameProps} /></div>
                 <div>
                     <label>
-                        <div>E-mail</div>
+                        <div>{localizer.useCorrectLanguage(language).form[1]}</div>
                         <div className="wrapper-input-icon">
                             <Fielder
                                 field={email}
@@ -97,7 +99,7 @@ export class Form extends React.Component<FormProps> {
                 </div>
                 <div>
                     <label>
-                        <div>Номер телефона</div>
+                        <div>{localizer.useCorrectLanguage(language).form[2]}</div>
                         <div className="wrapper-input-icon">
                             <Fielder
                                 field={telephone}
@@ -128,7 +130,7 @@ export class Form extends React.Component<FormProps> {
                 const diveRequests: DiveRequest[] = [];
                 diveRequests.push(newDiveRequest);
                 console.log(diveRequests);
-            }}>Отправить заявку</button>
+            }}>{localizer.useCorrectLanguage(language).form[7]}</button>
         </div>
     }
 }

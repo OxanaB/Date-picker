@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { getGridsStartAndFinishPoints, makeGrid } from './grid-maker';
-import { checkLanguage } from './language';
+import { localizer } from './language';
 
 
 export interface GridProps {
     date: Date;
+    language: string;
     when: (concern: PickedDateConcern) => void;
 }
 
@@ -15,15 +16,14 @@ export interface PickedDateConcern {
 
 export class Grid extends React.Component<GridProps> {
     render() {
-        const { date } = this.props;
+        const { date, language } = this.props;
         const { firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth } = getGridsStartAndFinishPoints(date);
         const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth);
-        const days = checkLanguage();
         return <>
             <thead>
                 <tr>
                     {
-                        days.map((day) => {
+                        localizer.useCorrectLanguage(language).days.map((day) => {
                             return <th key={day.toString()}> {day}
                             </th>;
                         })

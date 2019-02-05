@@ -8,19 +8,21 @@ export interface CalendarProps {
     date: Date;
     month: string;
     year: string;
+    language: string;
     when: (concern: CalendarConcerns) => void;
 }
 
 export class Calendar extends React.Component<CalendarProps> {
 
     render() {
-        const { date, month, year } = this.props;
+        const { date, month, year, language } = this.props;
         return <div className="calendar">
-            <MonthViewer date={date} month={month} year={year} when={concern => {
-                this.props.when(concern);
-            }} />
+            <MonthViewer date={date} month={month} year={year} language={language}
+                when={concern => {
+                    this.props.when(concern);
+                }} />
             <table className="grid">
-                <Grid date={date} when={concern => {
+                <Grid date={date} language={language} when={concern => {
                     this.props.when(concern);
                 }} />
             </table>

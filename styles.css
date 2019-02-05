@@ -8,6 +8,7 @@
   position: relative;
   width: 380px;
   margin: 15px;
+  background-color: #ffffffcc;
 }
 .dive-request-form input,
 .dive-request-form textarea {
@@ -60,7 +61,7 @@
 }
 .dive-request-form .date-picker .calendar {
   width: 305px;
-  max-height: 360px;
+  max-height: 370px;
   position: fixed;
   top: 245;
   left: 100;

@@ -4,7 +4,7 @@ import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
 import { matchOptions, to, broke, minus, monthToString, monthFromStringToNumber } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
-import { monthRU } from './language';
+import { localizer } from './language';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -34,7 +34,7 @@ export class App extends React.Component<{}, FormProps> {
                         const { value } = concern.telephone;
                         const isValid = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(value);
                         this.setState({
-                            telephone: { value, isValid }
+                            phone: { value, isValid }
                         });
                         break;
                     }
@@ -117,9 +117,10 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'show-next-month': {
-                const { anchorDate } = this.state;
+                const { anchorDate, language } = this.state;
                 const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() + 1);
-                const newMonth = monthToString(monthRU, newAnchorDate.getMonth());
+                const months = localizer.useCorrectLanguage(language).months;
+                const newMonth = monthToString(months, newAnchorDate.getMonth());
                 const newYear = newAnchorDate.getFullYear().toString();
                 this.setState({
                     anchorDate: newAnchorDate,
@@ -129,9 +130,10 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'show-previous-month': {
-                const { anchorDate } = this.state;
+                const { anchorDate, language } = this.state;
                 const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1);
-                const newMonth = monthToString(monthRU, newAnchorDate.getMonth());
+                const months = localizer.useCorrectLanguage(language).months;
+                const newMonth = monthToString(months, newAnchorDate.getMonth());
                 const newYear = newAnchorDate.getFullYear().toString();
                 this.setState({
                     anchorDate: newAnchorDate,
@@ -142,11 +144,12 @@ export class App extends React.Component<{}, FormProps> {
             };
             case 'month-choise': {
                 const { month } = concern;
-                const { year } = this.state;
-                const choosenMonth = monthFromStringToNumber(month, monthRU);
+                const { year, language } = this.state;
+                const months = localizer.useCorrectLanguage(language).months;
+                const choosenMonth = monthFromStringToNumber(month, months);
                 const yearNumber = parseInt(year);
                 const newAnchorDate = new Date(yearNumber, choosenMonth);
-                const monthText = monthToString(monthRU, choosenMonth);
+                const monthText = monthToString(months, choosenMonth);
                 this.setState({
                     anchorDate: newAnchorDate,
                     month: monthText
@@ -176,16 +179,17 @@ export class App extends React.Component<{}, FormProps> {
     }
 
     state = to<FormProps>({
+        language: window.navigator.language,  // 'ru-RU', 'en-US',
         name: '',
         email: { value: '', isValid: true },
-        telephone: { value: '', isValid: true },
+        phone: { value: '', isValid: true },
         level: '',
         option: null,
         isOptionToShow: false,
         pickedDate: null,
         pickedLevels: [],
         anchorDate: new Date(),
-        month: monthToString(monthRU, new Date().getMonth()),
+        month: '',
         year: new Date().getFullYear().toString(),
         isCalendarToShow: false,
         hotel: '',

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { localizer } from './language';
 
 export interface NewTagConcern {
     about: 'new-tag-added';
@@ -29,6 +30,7 @@ export type DiveLevelConcern = LevelInputConcern | LevelPickedConcern
     | PickedLevelToDeleteConcern | NewTagConcern | HideLevelOptionsConcern;
 
 export interface DiveLevelProps {
+    language: string;
     level: string;
     option: string[] | null;
     isOptionToShow: boolean;
@@ -38,11 +40,11 @@ export interface DiveLevelProps {
 
 export class DiveLevel extends React.Component<DiveLevelProps> {
     render() {
-        const { level, option, isOptionToShow, pickedLevels } = this.props;
+        const { level, option, isOptionToShow, pickedLevels, language } = this.props;
 
         return <>
             <label>
-                <div>Ваш дайверский уровень</div>
+            <div>{localizer.useCorrectLanguage(language).form[3]}</div>
                 <div><input type="text" value={level}
                     onChange={e => {
                         this.props.when({

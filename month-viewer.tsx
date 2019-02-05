@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { monthRU } from './language';
+import { localizer } from './language';
 
 export type MonthViewerConcern = MonthChoiseConcern | YearChoiseConcern | PreviousMonthConcern | NextMonthConcern;
 
@@ -7,6 +7,7 @@ export interface MonthViewerProps {
     date: Date;
     month: string;
     year: string;
+    language: string;
     when: (concern: MonthViewerConcern) => void;
 }
 export interface MonthChoiseConcern {
@@ -30,7 +31,7 @@ export interface NextMonthConcern {
 
 export class MonthViewer extends React.Component<MonthViewerProps> {
     render() {
-        const { month, year } = this.props;
+        const { month, year, language } = this.props;
         return <div className="month-viewer">
             <a className="previous-month" onClick={e => {
                 e.preventDefault;
@@ -45,9 +46,9 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
                     about: 'month-choise',
                     month: e.currentTarget.value
                 })
-            }>
+            }><option key="emptyMonth"></option>
                 {
-                    monthRU.map(month => {
+                    localizer.useCorrectLanguage(language).months.map(month => {
                         return <option key={month}>{month}</option>
                     })
                 }

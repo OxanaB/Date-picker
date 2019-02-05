@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { localizer } from './language';
 
 export type DateInputConcern = ShowCalendarConcern;
 
 export interface DateInputProps {
     pickedDate: Date | null;
+    language: string;
     when: (concern: DateInputConcern) => void;
 }
 
@@ -22,10 +24,10 @@ export class DateInput extends React.Component<DateInputProps, State> {
     }
     render() {
         const { text } = this.state;
-
+        const { language } = this.props;
         return <>
             <label>
-                <div>Дата приезда</div>
+                <div>{localizer.useCorrectLanguage(language).form[4]}</div>
                 <div className="wrapper-input-icon">
                     <input type="text"
                         value={text}
