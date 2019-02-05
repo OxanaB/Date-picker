@@ -10,6 +10,7 @@ export function getGridsStartAndFinishPoints(date: Date) {
     const lastDayOfMonth = new Date(year, month + 1, 0);
     const deltaLast = 7 - lastDayOfMonth.getDay();
     const lastDayOnTheGrid = new Date(year, month + 1, -1 + deltaLast);
+
     return { firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth };
 }
 
@@ -28,6 +29,7 @@ export function makeGrid(firstDayOnTheGrid: Date, lastDayOnTheGrid: Date, lastDa
             week.push(date);
             if (date.getTime() === stopCount) {
                 result.push(week);
+
                 return result;
             }
         }

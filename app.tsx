@@ -4,7 +4,7 @@ import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
 import { matchOptions, to, broke, minus, monthToString, monthFromStringToNumber } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
-import { monthEn, monthRU } from './month-viewer';
+import { monthRU } from './language';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -99,14 +99,14 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'hotel-input': {
-                this.setState({ 
-                    hotel: concern.hotel 
+                this.setState({
+                    hotel: concern.hotel
                 });
                 break;
             };
             case 'message-input': {
-                this.setState({ 
-                    message: concern.message 
+                this.setState({
+                    message: concern.message
                 });
                 break;
             };

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { monthRU } from './language';
 
 export type MonthViewerConcern = MonthChoiseConcern | YearChoiseConcern | PreviousMonthConcern | NextMonthConcern;
 
@@ -79,9 +80,3 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
         </div>
     }
 }
-
-export const monthEn = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-    'October', 'November', 'December']
-export const monthRU = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май',
-    'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];

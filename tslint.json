@@ -4,7 +4,6 @@
 		"triple-equals": true,
 		"eofline": true,
 		"import-spacing": true,
-		"newline-before-return": true,
 		"no-trailing-whitespace": true,
 		"no-irregular-whitespace": true
 	}
