@@ -22,6 +22,7 @@ export class DateInput extends React.Component<DateInputProps, State> {
     }
     render() {
         const { text } = this.state;
+
         return <>
             <label>
                 <div>Дата приезда</div>

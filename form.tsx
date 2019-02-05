@@ -77,6 +77,7 @@ export class Form extends React.Component<FormProps> {
             }
         };
         const isValid = email.isValid && telephone.isValid;
+
         return <div className="dive-request-form">
             <form>
                 <div><Name {...nameProps} /></div>
