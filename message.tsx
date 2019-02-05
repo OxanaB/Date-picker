@@ -18,7 +18,7 @@ export class Message extends React.Component<MessageProps> {
         return <>
             <label>
                 <div>{localizer.useCorrectLanguage(language).form[6]}</div>
-                <div><textarea value={message}
+                <div><textarea value={message} required
                     onChange={e => {
                         this.props.when({ about: 'message-input', message: e.currentTarget.value })
                      }} /></div>

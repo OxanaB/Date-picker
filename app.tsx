@@ -10,8 +10,18 @@ export class App extends React.Component<{}, FormProps> {
 
     private when = (concern: FormConcern) => {
         switch (concern.about) {
-            case 'name-input': {
-                this.setState({ name: concern.name });
+            case 'name': {
+                switch (concern.name.about) {
+                    case 'field-input': {
+                        const { value } = concern.name;
+                        const isValid = value !== '';
+                        this.setState({
+                            name: { value, isValid}
+                        });
+                        break;
+                    }
+                    default: return broke(concern.name.about)
+                }
                 break;
             };
             case 'email': {
@@ -186,7 +196,7 @@ export class App extends React.Component<{}, FormProps> {
 
     state = to<FormProps>({
         language: window.navigator.language,  // 'ru-RU', 'en-US',
-        name: '',
+        name:  { value: '', isValid: false },
         email: { value: '', isValid: true },
         phone: { value: '', isValid: true },
         level: '',

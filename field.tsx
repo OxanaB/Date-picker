@@ -18,7 +18,7 @@ export interface FielderConcern {
 export class Fielder extends React.Component<FielderProps> {
     render() {
         const { field: { isValid, value } } = this.props;
-        return <input className={isValid ? '' : 'invalid'} type="text" value={value}
+        return <input className={isValid ? '' : 'invalid'} type="text" value={value} required
             onChange={e => {
                 this.props.when({ about: 'field-input', value: e.currentTarget.value })
             }} />;
