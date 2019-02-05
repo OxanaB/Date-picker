@@ -174,6 +174,12 @@ export class App extends React.Component<{}, FormProps> {
                 });
                 break;
             };
+            case 'change-language': {
+                this.setState({
+                    language: concern.language
+                });
+                break;
+            }
             default: return broke(concern);
         }
     }

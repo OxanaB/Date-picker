@@ -15,8 +15,13 @@ export type FormConcern =
     | DiveLevelConcern
     | DatePickerConcern
     | HotelConcern
-    | MessageConcern;
+    | MessageConcern
+    | LanguageConcern;
 
+export interface LanguageConcern {
+    about: 'change-language';
+    language: string;
+}
 
 export interface FormProps {
     readonly language: string;
@@ -81,6 +86,16 @@ export class Form extends React.Component<FormProps> {
         };
         const isValid = email.isValid && telephone.isValid;
         return <div className="dive-request-form">
+            <div className="language">
+                <a href="#" id="ru" onClick={(e) =>{
+                    e.preventDefault();
+                    this.props.when({about: 'change-language', language: 'ru-RU'})
+                }}></a>
+                <a href="#" id="en" onClick={(e) =>{
+                    e.preventDefault();
+                    this.props.when({about: 'change-language', language: 'en-US'})
+                }}></a>
+            </div>
             <form>
                 <div><Name {...nameProps} /></div>
                 <div>

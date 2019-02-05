@@ -51,7 +51,32 @@
             }
         }
     }
-    
+    .language {
+        position: absolute;
+        top: -10;
+        right: -50;
+        display: flex;
+        a {
+            display: block;
+            width: 32px;
+            height: 32px;
+            margin: 5px;
+            border: 1px solid lightgray;
+            border-radius: 50px;
+            &:hover {
+                border-color: blue;
+            }
+            &:active {
+                border-color:gray;
+            }
+        }
+        #ru {
+            background-image: url(./images/russia-flag-round-icon-32.png)
+        }
+        #en {
+            background-image: url(./images/united-states-of-america-flag-round-icon-32.png)
+        }
+    }
     .wrapper-input-icon {
         display: flex;
         align-items: center;
@@ -98,12 +123,12 @@
 
                 .previous-month {
                     .button();
-                    background-image: url(/arrow_left.png);
+                    background-image: url(./images/arrow_left.png);
                 }
 
                 .next-month {
                     .button();
-                    background-image: url(/arrow_right.png);
+                    background-image: url(./images/arrow_right.png);
                 }
                 select {
                     font-size: 18px;

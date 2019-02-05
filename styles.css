@@ -52,6 +52,32 @@
 .dive-request-form .tags a:active {
   font-weight: bold;
 }
+.dive-request-form .language {
+  position: absolute;
+  top: -10;
+  right: -50;
+  display: flex;
+}
+.dive-request-form .language a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 5px;
+  border: 1px solid lightgray;
+  border-radius: 50px;
+}
+.dive-request-form .language a:hover {
+  border-color: blue;
+}
+.dive-request-form .language a:active {
+  border-color: aqua;
+}
+.dive-request-form .language #ru {
+  background-image: url(./images/russia-flag-round-icon-32.png);
+}
+.dive-request-form .language #en {
+  background-image: url(./images/united-states-of-america-flag-round-icon-32.png);
+}
 .dive-request-form .wrapper-input-icon {
   display: flex;
   align-items: center;
@@ -89,7 +115,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #fff;
-  background-image: url(/arrow_left.png);
+  background-image: url(./images/arrow_left.png);
 }
 .dive-request-form .date-picker .calendar .month-viewer .next-month {
   display: block;
@@ -101,7 +127,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #fff;
-  background-image: url(/arrow_right.png);
+  background-image: url(./images/arrow_right.png);
 }
 .dive-request-form .date-picker .calendar .month-viewer select {
   font-size: 18px;
