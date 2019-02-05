@@ -99,15 +99,21 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'hotel-input': {
-                this.setState({ hotel: concern.hotel });
+                this.setState({ 
+                    hotel: concern.hotel 
+                });
                 break;
             };
             case 'message-input': {
-                this.setState({ message: concern.message });
+                this.setState({ 
+                    message: concern.message 
+                });
                 break;
             };
             case 'show-calendar': {
-                this.setState({ isCalendarToShow: concern.isCalendarToShow });
+                this.setState({
+                    isCalendarToShow: concern.isCalendarToShow
+                });
                 break;
             };
             case 'show-next-month': {
@@ -157,7 +163,7 @@ export class App extends React.Component<{}, FormProps> {
                     year: yearText
                 });
                 break;
-            };            
+            };
             case 'date-is-picked': {
                 this.setState({
                     pickedDate: concern.pickedDate,

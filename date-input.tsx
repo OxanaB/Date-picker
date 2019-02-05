@@ -1,11 +1,13 @@
 import * as React from 'react';
 
+export type DateInputConcern = ShowCalendarConcern;
+
 export interface DateInputProps {
     pickedDate: Date | null;
     when: (concern: DateInputConcern) => void;
 }
 
-export interface DateInputConcern {
+export interface ShowCalendarConcern {
     about: 'show-calendar';
     isCalendarToShow: boolean;
 }
@@ -27,10 +29,21 @@ export class DateInput extends React.Component<DateInputProps, State> {
                     <input type="text"
                         value={text}
                         onFocus={() => {
-                            this.props.when({ about: 'show-calendar', isCalendarToShow: true })
+                            this.props.when({
+                                about: 'show-calendar',
+                                isCalendarToShow: true
+                            })
                         }}
                         onChange={e => {
                             this.setState({ text: e.currentTarget.value });
+                        }}
+                        onKeyDown={({ keyCode }) => {
+                            if (keyCode === 27) {
+                                this.props.when({
+                                    about: 'show-calendar',
+                                    isCalendarToShow: false
+                                })
+                            }
                         }}
                     />
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
