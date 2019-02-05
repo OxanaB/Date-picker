@@ -93,7 +93,7 @@ export class Form extends React.Component<FormProps> {
                 <form>
                     <div>
                         <label>
-                            <div>{localizer.useCorrectLanguage(language).form[0]}</div>
+                            <div>{localizer.useCorrectLanguage(language).form[0]}*</div>
                             <div><Fielder field={name}
                                 when={concern => this.props.when({ about: 'name', name: concern })}
                             /></div>
@@ -101,7 +101,7 @@ export class Form extends React.Component<FormProps> {
                     </div>
                     <div>
                         <label>
-                            <div>{localizer.useCorrectLanguage(language).form[1]}</div>
+                            <div>{localizer.useCorrectLanguage(language).form[1]}*</div>
                             <div className="wrapper-input-icon">
                                 <Fielder
                                     field={email}
@@ -115,7 +115,7 @@ export class Form extends React.Component<FormProps> {
                     </div>
                     <div>
                         <label>
-                            <div>{localizer.useCorrectLanguage(language).form[2]}</div>
+                            <div>{localizer.useCorrectLanguage(language).form[2]}*</div>
                             <div className="wrapper-input-icon">
                                 <Fielder
                                     field={telephone}
@@ -131,6 +131,7 @@ export class Form extends React.Component<FormProps> {
                     <div className="date-picker"><DatePicker {...datePickerProps} /></div>
                     <div><Hotel {...hotelProps} /></div>
                     <div><Message {...messageProps} /></div>
+                    <p>* - {localizer.useCorrectLanguage(language).form[8]}</p>
                 </form>
                 <button disabled={!isValid} onClick={e => {
                     e.preventDefault();

@@ -85,6 +85,10 @@
 .dive-request-form .wrapper-input-icon svg {
   margin-left: 5px;
 }
+.dive-request-form p {
+  font-size: 0.8em;
+  font-style: italic;
+}
 .dive-request-form .date-picker .calendar {
   width: 305px;
   max-height: 370px;
