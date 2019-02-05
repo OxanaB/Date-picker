@@ -112,6 +112,9 @@
   text-align: center;
   overflow: hidden;
 }
+.dive-request-form .date-picker .calendar .not-active a {
+  color: lightgray;
+}
 .dive-request-form .date-picker .calendar a {
   display: block;
   padding: 10px;

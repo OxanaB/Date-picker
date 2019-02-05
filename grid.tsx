@@ -35,7 +35,8 @@ export class Grid extends React.Component<GridProps> {
                     gridCurrentMonth.map((week, weekIndex) => {
                         return <tr key={weekIndex}>{
                             week.map(date => {
-                                return <td key={date.toDateString()}>
+                                const classes = date.getMonth() === lastDayOfMonth.getMonth() ? '' : 'not-active';
+                                return <td key={date.toDateString()} className={classes}>
                                     <a href="" onClick={e => {
                                         e.preventDefault();
                                         this.props.when({ about: 'date-is-picked', pickedDate: date });
