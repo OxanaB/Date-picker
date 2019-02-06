@@ -27,7 +27,7 @@ export class App extends React.Component<{}, FormProps> {
                 switch (concern.email.about) {
                     case 'field-input': {
                         const { value } = concern.email;
-                        const isValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(value);
+                        const isValid = /([+a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/.test(value) && value !== '';
                         this.setState({
                             email: { value, isValid }
                         });
@@ -41,7 +41,7 @@ export class App extends React.Component<{}, FormProps> {
                 switch (concern.telephone.about) {
                     case 'field-input': {
                         const { value } = concern.telephone;
-                        const isValid = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(value);
+                        const isValid = /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/.test(value) && value !== '';
                         this.setState({
                             phone: { value, isValid }
                         });
@@ -145,8 +145,8 @@ export class App extends React.Component<{}, FormProps> {
     state = to<FormProps>({
         language: window.navigator.language,  // 'ru-RU', 'en-US',
         name:  { value: '', isValid: false },
-        email: { value: '', isValid: true },
-        phone: { value: '', isValid: true },
+        email: { value: '', isValid: false },
+        phone: { value: '', isValid: false },
         level: '',
         option: null,
         isOptionToShow: false,
