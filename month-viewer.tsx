@@ -47,7 +47,8 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
             <select name="month" id="month" value={month} onChange={(e) => {
                 this.props.when({
                     about: 'month-choise',
-                    anchorDate, month
+                    anchorDate,
+                    month: e.currentTarget.value
                 })
             }}><option key="emptyMonth"></option>
                 {

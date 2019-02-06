@@ -52,8 +52,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
                 break;
             };
             case 'month-choise': {
+                const { month }  = concern;
                 const months = localizer.useCorrectLanguage(language).months;
-                const choosenMonth = monthFromStringToNumber(this.state.month, months);
+                const choosenMonth = monthFromStringToNumber(month, months);
                 const yearNumber = parseInt(this.state.year);
                 const newAnchorDate = new Date(yearNumber, choosenMonth);
                 const monthText = monthToString(months, choosenMonth);
@@ -65,8 +66,10 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
             };
             case 'year-choise': {
                 const { year } = concern;
+                const { anchorDate } = this.state;
+                const choosenMonth = anchorDate.getMonth();
                 const choosenYear = parseInt(year);
-                const newAnchorDate = new Date(choosenYear);
+                const newAnchorDate = new Date(choosenYear, choosenMonth);
                 const yearText = choosenYear.toString();
                 this.setState({
                     anchorDate: newAnchorDate,
