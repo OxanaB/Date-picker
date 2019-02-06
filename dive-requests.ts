@@ -7,4 +7,4 @@ export interface DiveRequest {
     hotel: string,
     message: string,
 }
-export const diveRequests: DiveRequest[] = []
+export const diveRequests: DiveRequest[] = [];

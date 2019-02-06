@@ -4,6 +4,7 @@ import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
 import { matchOptions, to, broke, minus } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
+import { sendNewDiveRequest } from './xhr-post-reqiest';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -15,7 +16,7 @@ export class App extends React.Component<{}, FormProps> {
                         const { value } = concern.name;
                         const isValid = value !== '';
                         this.setState({
-                            name: { value, isValid}
+                            name: { value, isValid }
                         });
                         break;
                     }
@@ -137,6 +138,14 @@ export class App extends React.Component<{}, FormProps> {
                     language: concern.language
                 });
                 break;
+            };
+            case 'send-new-requiest': {
+                this.setState({
+                    newDiveRequest: concern.newDiveRequest,
+                });
+                const { newDiveRequest } = concern;
+                sendNewDiveRequest(newDiveRequest);
+                break;
             }
             default: return broke(concern);
         }
@@ -144,7 +153,7 @@ export class App extends React.Component<{}, FormProps> {
 
     state = to<FormProps>({
         language: window.navigator.language,  // 'ru-RU', 'en-US',
-        name:  { value: '', isValid: false },
+        name: { value: '', isValid: false },
         email: { value: '', isValid: false },
         phone: { value: '', isValid: false },
         level: '',

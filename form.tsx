@@ -15,11 +15,16 @@ export type FormConcern =
     | DatePickerConcern
     | HotelConcern
     | MessageConcern
-    | LanguageConcern;
+    | LanguageConcern
+    | SendNewRequiest;
 
 export interface LanguageConcern {
     about: 'change-language';
     language: string;
+}
+export interface SendNewRequiest {
+    about: 'send-new-requiest'
+    newDiveRequest: DiveRequest[];
 }
 
 export interface FormProps {
@@ -141,6 +146,10 @@ export class Form extends React.Component<FormProps> {
                     const diveRequests: DiveRequest[] = [];
                     diveRequests.push(newDiveRequest);
                     console.log(diveRequests);
+                    this.props.when({
+                        about: 'send-new-requiest',
+                        newDiveRequest: diveRequests
+                    });
                 }}>{localizer.useCorrectLanguage(language).form[7]}</button>
             </div>
         </>
