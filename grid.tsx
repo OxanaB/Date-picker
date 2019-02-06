@@ -4,7 +4,7 @@ import { localizer } from './language';
 
 
 export interface GridProps {
-    date: Date;
+    anchorDate: Date;
     language: string;
     when: (concern: PickedDateConcern) => void;
 }
@@ -16,7 +16,7 @@ export interface PickedDateConcern {
 
 export class Grid extends React.Component<GridProps> {
     render() {
-        const { date, language } = this.props;
+        const { anchorDate: date, language } = this.props;
         const { firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth } = getGridsStartAndFinishPoints(date);
         const gridCurrentMonth = makeGrid(firstDayOnTheGrid, lastDayOnTheGrid, lastDayOfMonth);
         return <>

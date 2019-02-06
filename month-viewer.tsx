@@ -4,61 +4,65 @@ import { localizer } from './language';
 export type MonthViewerConcern = MonthChoiseConcern | YearChoiseConcern | PreviousMonthConcern | NextMonthConcern;
 
 export interface MonthViewerProps {
-    date: Date;
+    anchorDate: Date;
+    language: string;
     month: string;
     year: string;
-    language: string;
     when: (concern: MonthViewerConcern) => void;
 }
 export interface MonthChoiseConcern {
     about: 'month-choise';
+    anchorDate: Date;
     month: string;
 }
 export interface YearChoiseConcern {
     about: 'year-choise';
+    anchorDate: Date;
     year: string;
 }
 export interface PreviousMonthConcern {
     about: 'show-previous-month';
+    anchorDate: Date;
     month: string;
     year: string;
 }
 export interface NextMonthConcern {
     about: 'show-next-month';
+    anchorDate: Date;
     month: string;
     year: string;
 }
 
 export class MonthViewer extends React.Component<MonthViewerProps> {
-    render() {
-        const { month, year, language } = this.props;
+  render() {
+        const { anchorDate, language, month, year } = this.props;
         return <div className="month-viewer">
             <a className="previous-month" onClick={e => {
-                e.preventDefault;
+                e.preventDefault();
                 this.props.when({
                     about: 'show-previous-month',
-                    month,
-                    year
-                })
+                    anchorDate, month, year
+                 });
             }}></a>
-            <select name="month" id="month" value={month} onChange={(e) =>
+            <select name="month" id="month" value={month} onChange={(e) => {
                 this.props.when({
                     about: 'month-choise',
-                    month: e.currentTarget.value
+                    anchorDate, month
                 })
-            }><option key="emptyMonth"></option>
+            }}><option key="emptyMonth"></option>
                 {
                     localizer.useCorrectLanguage(language).months.map(month => {
                         return <option key={month}>{month}</option>
                     })
                 }
             </select>
-            <select name="year" id="year" value={year} onChange={(e) =>
+            <select name="year" id="year" value={year} onChange={(e) => {
                 this.props.when({
                     about: 'year-choise',
+                    anchorDate,
                     year: e.currentTarget.value
                 })
-            }>
+            }}>
                 <option id="2016">2016</option>
                 <option id="2017">2017</option>
                 <option id="2018">2018</option>
@@ -71,11 +75,10 @@ export class MonthViewer extends React.Component<MonthViewerProps> {
                 <option id="2025">2025</option>
             </select>
             <a className="next-month" onClick={e => {
-                e.preventDefault;
+                e.preventDefault();
                 this.props.when({
                     about: 'show-next-month',
-                    month,
-                    year
+                    anchorDate, month, year
                 })
             }}></a>
         </div>

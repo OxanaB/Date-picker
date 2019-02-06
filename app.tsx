@@ -2,9 +2,8 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
 import { diveRequests } from './dive-requests';
-import { matchOptions, to, broke, minus, monthToString, monthFromStringToNumber } from './utils';
+import { matchOptions, to, broke, minus } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
-import { localizer } from './language';
 
 export class App extends React.Component<{}, FormProps> {
 
@@ -126,57 +125,6 @@ export class App extends React.Component<{}, FormProps> {
                 });
                 break;
             };
-            case 'show-next-month': {
-                const { anchorDate, language } = this.state;
-                const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() + 1);
-                const months = localizer.useCorrectLanguage(language).months;
-                const newMonth = monthToString(months, newAnchorDate.getMonth());
-                const newYear = newAnchorDate.getFullYear().toString();
-                this.setState({
-                    anchorDate: newAnchorDate,
-                    month: newMonth,
-                    year: newYear
-                });
-                break;
-            };
-            case 'show-previous-month': {
-                const { anchorDate, language } = this.state;
-                const newAnchorDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth() - 1);
-                const months = localizer.useCorrectLanguage(language).months;
-                const newMonth = monthToString(months, newAnchorDate.getMonth());
-                const newYear = newAnchorDate.getFullYear().toString();
-                this.setState({
-                    anchorDate: newAnchorDate,
-                    month: newMonth,
-                    year: newYear
-                });
-                break;
-            };
-            case 'month-choise': {
-                const { month } = concern;
-                const { year, language } = this.state;
-                const months = localizer.useCorrectLanguage(language).months;
-                const choosenMonth = monthFromStringToNumber(month, months);
-                const yearNumber = parseInt(year);
-                const newAnchorDate = new Date(yearNumber, choosenMonth);
-                const monthText = monthToString(months, choosenMonth);
-                this.setState({
-                    anchorDate: newAnchorDate,
-                    month: monthText
-                });
-                break;
-            };
-            case 'year-choise': {
-                const { year } = concern;
-                const choosenYear = parseInt(year);
-                const newAnchorDate = new Date(choosenYear);
-                const yearText = choosenYear.toString();
-                this.setState({
-                    anchorDate: newAnchorDate,
-                    year: yearText
-                });
-                break;
-            };
             case 'date-is-picked': {
                 this.setState({
                     pickedDate: concern.pickedDate,
@@ -202,11 +150,8 @@ export class App extends React.Component<{}, FormProps> {
         level: '',
         option: null,
         isOptionToShow: false,
-        pickedDate: null,
         pickedLevels: [],
-        anchorDate: new Date(),
-        month: '',
-        year: new Date().getFullYear().toString(),
+        pickedDate: null,
         isCalendarToShow: false,
         hotel: '',
         message: '',

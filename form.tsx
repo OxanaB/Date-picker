@@ -32,9 +32,6 @@ export interface FormProps {
     readonly option: string[] | null;
     readonly isOptionToShow: boolean;
     readonly pickedDate: Date | null;
-    readonly month: string;
-    readonly year: string;
-    readonly anchorDate: Date;
     readonly isCalendarToShow: boolean;
     readonly hotel: string;
     readonly message: string;
@@ -45,8 +42,8 @@ export interface FormProps {
 export class Form extends React.Component<FormProps> {
     render() {
         const {
-            name, email, phone: telephone, pickedDate, anchorDate, isOptionToShow, pickedLevels,
-            isCalendarToShow, level, hotel, message, option, month, year, language
+            name, email, phone: telephone, pickedDate, isOptionToShow, pickedLevels,
+            isCalendarToShow, level, hotel, message, option, language
         } = this.props;
         const diveLevelProps: DiveLevelProps = {
             level, option, isOptionToShow, pickedLevels, language,
@@ -56,9 +53,6 @@ export class Form extends React.Component<FormProps> {
         };
         const datePickerProps: DatePickerProps = {
             pickedDate,
-            anchorDate,
-            month,
-            year,
             language,
             isCalendarToShow,
             when: concern => {
