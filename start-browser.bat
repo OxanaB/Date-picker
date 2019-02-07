@@ -1,1 +1,1 @@
-start chrome.exe http://localhost:8000
+start chrome.exe --disable-web-security  http://localhost:8000

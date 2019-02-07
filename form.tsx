@@ -135,6 +135,7 @@ export class Form extends React.Component<FormProps> {
                 <button disabled={!isValid} onClick={e => {
                     e.preventDefault();
                     const newDiveRequest: DiveRequest = {
+                        id: undefined,
                         name: name.value,
                         email: email.value,
                         telephone: telephone.value,

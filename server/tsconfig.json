@@ -1,0 +1,7 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"outDir": "../node_modules/date-picker",
+		"types": ["node", "express"]
+	}
+}
