@@ -140,11 +140,14 @@ export class App extends React.Component<{}, FormProps> {
                 break;
             };
             case 'send-new-requiest': {
+                const { newDiveRequest } = concern;
+                async function upload() {
+                    await sendNewDiveRequest(newDiveRequest);
+                }
                 this.setState({
                     newDiveRequest: concern.newDiveRequest,
                 });
-                const { newDiveRequest } = concern;
-                sendNewDiveRequest(newDiveRequest);
+                upload();
                 break;
             }
             default: return broke(concern);
