@@ -1,5 +1,4 @@
 export interface DiveRequest {
-    id: number | undefined,
     name: string,
     email: string,
     telephone: string,

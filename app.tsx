@@ -170,7 +170,6 @@ export class App extends React.Component<{}, FormProps> {
         when: this.when,
         newDiveRequest: diveRequests,
     })
-
     render() {
         const { state } = this;
         return <Form {...state} />;
