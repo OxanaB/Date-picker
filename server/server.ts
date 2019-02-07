@@ -28,6 +28,9 @@ const createDiveRequest = (where: string, what: string) => {
 };
 
 app.post('/dive-requests', (req, res) => {
+    console.log('doing post');
+    res.status(200).send(`{}`);
+    return;
     const receivedDiveRequest = createDiveRequest('dive-requests', req.query);
     if (receivedDiveRequest) {
         diveRequests.push();

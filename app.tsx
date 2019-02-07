@@ -156,9 +156,9 @@ export class App extends React.Component<{}, FormProps> {
 
     state = to<FormProps>({
         language: window.navigator.language,  // 'ru-RU', 'en-US',
-        name: { value: '', isValid: false },
-        email: { value: '', isValid: false },
-        phone: { value: '', isValid: false },
+        name: { value: 'aaa', isValid: true },
+        email: { value: 'a@a.a', isValid: true },
+        phone: { value: '1234567890', isValid: true },
         level: '',
         option: null,
         isOptionToShow: false,
