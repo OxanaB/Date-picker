@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Form, FormProps, FormConcern } from './form';
-import { diveRequests } from './dive-requests';
 import { matchOptions, to, broke, minus } from './utils';
 import { diveLevelOptions } from './type-ahead-options';
 import { sendNewDiveRequest } from './xhr-post-reqiest';
@@ -163,12 +162,12 @@ export class App extends React.Component<{}, FormProps> {
         option: null,
         isOptionToShow: false,
         pickedLevels: [],
-        pickedDate: null,
+        pickedDate: new Date(),
         isCalendarToShow: false,
         hotel: '',
         message: '',
         when: this.when,
-        newDiveRequest: diveRequests,
+        newDiveRequest: undefined
     })
     render() {
         const { state } = this;

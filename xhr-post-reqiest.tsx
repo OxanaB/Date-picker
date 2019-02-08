@@ -1,6 +1,6 @@
 import { DiveRequest } from "./dive-requests";
 
-export function sendNewDiveRequest(request: DiveRequest[]): Promise<string> {
+export function sendNewDiveRequest(request: DiveRequest): Promise<string> {
     return new Promise<string>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         const url = 'http://localhost:8080/dive-requests';

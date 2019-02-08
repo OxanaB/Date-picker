@@ -2,9 +2,8 @@ export interface DiveRequest {
     name: string,
     email: string,
     telephone: string,
-    diveLevel: string[],
-    arrivalDate: Date | null,
+    diveLevel: string,
+    arrivalDate: string,
     hotel: string,
     message: string,
 }
-export const diveRequests: DiveRequest[] = [];

@@ -24,7 +24,7 @@ export interface LanguageConcern {
 }
 export interface SendNewRequiest {
     about: 'send-new-requiest'
-    newDiveRequest: DiveRequest[];
+    newDiveRequest: DiveRequest;
 }
 
 export interface FormProps {
@@ -36,11 +36,11 @@ export interface FormProps {
     readonly pickedLevels: string[];
     readonly option: string[] | null;
     readonly isOptionToShow: boolean;
-    readonly pickedDate: Date | null;
+    readonly pickedDate: Date;
     readonly isCalendarToShow: boolean;
     readonly hotel: string;
     readonly message: string;
-    readonly newDiveRequest: DiveRequest[];
+    readonly newDiveRequest: DiveRequest | undefined;
     readonly when: (concern: FormConcern) => void;
 }
 
@@ -134,21 +134,18 @@ export class Form extends React.Component<FormProps> {
                 </form>
                 <button disabled={!isValid} onClick={e => {
                     e.preventDefault();
-                    const newDiveRequest: DiveRequest = {
+                    const diveRequest: DiveRequest = {
                         name: name.value,
                         email: email.value,
                         telephone: telephone.value,
-                        diveLevel: pickedLevels,
-                        arrivalDate: pickedDate,
+                        diveLevel: pickedLevels.join(', '),
+                        arrivalDate: pickedDate.toLocaleDateString(),
                         hotel,
                         message
-                    }
-                    const diveRequests: DiveRequest[] = [];
-                    diveRequests.push(newDiveRequest);
-                    console.log(diveRequests);
-                    this.props.when({
+                    };
+                        this.props.when({
                         about: 'send-new-requiest',
-                        newDiveRequest: diveRequests
+                        newDiveRequest: diveRequest
                     });
                 }}>{localizer.useCorrectLanguage(language).form[7]}</button>
             </div>
