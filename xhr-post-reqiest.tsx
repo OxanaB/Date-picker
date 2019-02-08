@@ -5,17 +5,18 @@ export function sendNewDiveRequest(request: DiveRequest[]): Promise<string> {
         const xhr = new XMLHttpRequest();
         const url = 'http://localhost:8080/dive-requests';
         const data = JSON.stringify({ request })
-
+        console.log(data);
         xhr.onload = function () {
             const json = xhr.responseText;
-            const obj = JSON.parse(json);
-            resolve(obj);
+            const body = JSON.parse(json);
+            resolve(body);
         };
         xhr.onerror = function (error) {
             console.error(error);
             reject(error);
         };
         xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(data);
     });
 }
